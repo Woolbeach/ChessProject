@@ -20,7 +20,7 @@ public class GrafikPanel extends JPanel
         for (int j = 0; j < 8; j++) {
             for (int i = 0; i < 8; i++) {
                 if(test){
-                    g.setColor(Color.getHSBColor(20,25,80));
+                    g.setColor(Color.white);
 
                     g.fillRect(i*squareSize,j*squareSize,squareSize,squareSize);
                     test = false;

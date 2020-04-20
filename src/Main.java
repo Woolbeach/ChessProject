@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        int square = 40;
+        int square = 80;
         GrafikPanel panel = new GrafikPanel(square);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
 
@@ -34,8 +34,9 @@ public class Main {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 int xpos = e.getX();
-                int ypos = e.getY();
+                int ypos = e.getY()-31;
                 System.out.println("clicked! at: " + xpos+ " " + ypos);
+                System.out.println("translates to square" + xpos/square + " , "+ypos/square);
             }
         });
     }
