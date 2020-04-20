@@ -1,5 +1,5 @@
-public class Hest extends Brikker {
-    public Hest(boolean farve){
+public class Springer extends Brikker {
+    public Springer(boolean farve){
 
     }
     @Override
