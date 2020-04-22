@@ -11,7 +11,6 @@ public class Main {
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
-
         LoadPieces(mitbræt);
 
 
@@ -47,38 +46,80 @@ public class Main {
                 int ypos = e.getY() - 31;
 
 
-
                 System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
+                System.out.println("piece id:" + mitbræt[ypos/square][xpos/square]);
 
-                if(clicks[0] > 1){
-                    movepiece(oldxpos[0],oldypos[0],xpos/square,ypos/square,mitbræt);
+                if (clicks[0] > 1) {
+                    movepiece(oldxpos[0], oldypos[0], xpos / square, ypos / square, mitbræt);
                     clicks[0] = 0;
                     vindue.repaint();
                 } else {
-                    oldxpos[0] = xpos/square;
-                    oldypos[0] = ypos/square;
-                    //vindue.repaint();
+                    oldxpos[0] = xpos / square;
+                    oldypos[0] = ypos / square;
                     int squarex = xpos / square;
                     int squarey = ypos / square;
 
+
+                    Color selectedColor = new Color(18, 50, 150, 127);
+                    Color movesColor = new Color(188, 10, 40, 100);
+
+                    //draw selected square
                     Graphics g = mainPanel.getGraphics();
                     g.setColor(Color.blue);
-                    g.drawRect(squarex*square, squarey*square, square, square);
+                    g.drawRect(squarex * square, squarey * square, square, square);
+                    g.setColor(selectedColor);
+                    g.fillRect(squarex * square, squarey * square, square, square);
+
+                    //moves
+                    g.setColor(movesColor);
+                    switch (mitbræt[squarey][squarex]) {
+                        case 1: {
+                            //black pawn
+                            if (mitbræt[squarey + 1][squarex + 1] != 0 && mitbræt[squarey + 1][squarex + 1] > 6) {
+                                g.fillRect(squarex * square + square, squarey * square + square, square, square);
+                            }
+                            if (mitbræt[squarey + 1][squarex - 1] != 0 && mitbræt[squarey + 1][squarex + 1] > 6) {
+                                g.fillRect(squarex * square - square, squarey * square + square, square, square);
+                            }
+                            if (mitbræt[squarey + 1][squarex] == 0) {
+                                g.fillRect(squarex * square, squarey * square + square, square, square);
+                            }
+                            break;
+                        }
+                        case 4: {
+                            //black rook
+                            int step = 1;
+
+                            if (mitbræt[squarey + step][squarex] == 0) {
+                                g.fillRect(squarex * square, squarey * square + square * step, square, square);
+                                step++;
+
+                                if (mitbræt[squarey + step][squarex] == 0) {
+                                    g.fillRect(squarex * square, squarey * square + square*step, square, square);
+                                    step++;
+
+                                    if (mitbræt[squarey + step][squarex] == 0) {
+                                        g.fillRect(squarex * square, squarey * square + square*step, square, square);
+                                        step++;
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
+                    }
                 }
-
-
             }
         });
     }
 
-    public static void movepiece(int fromx, int fromy, int tox, int toy,int[][] board){
-        if(board[fromy][fromx]==0){
+    public static void movepiece(int fromx, int fromy, int tox, int toy, int[][] board) {
+        if (board[fromy][fromx] == 0) {
             return;
-        }else{
+        } else {
             int temp1 = board[fromy][fromx];
             board[fromy][fromx] = 0;
             board[toy][tox] = temp1;
-
         }
     }
 
