@@ -74,7 +74,7 @@ public class GrafikPanel extends JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//testda
+//testdada
         for (int xaxis = 0; xaxis < 8; xaxis++) {
             for (int yaxis = 0; yaxis < 8; yaxis++) {
                 switch (board[xaxis][yaxis]) {
