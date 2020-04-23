@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-
+        System.out.println();
         //Filip: har lavet et af hvert brik objekt
         Bonde bonde = new Bonde();
         Dronning dronning = new Dronning();
