@@ -79,51 +79,68 @@ public class GrafikPanel extends JPanel {
         for (int xaxis = 0; xaxis < 8; xaxis++) {
             for (int yaxis = 0; yaxis < 8; yaxis++) {
                 switch (board[xaxis][yaxis]) {
-                    case 1: {
+                    //filip: har lavet flere cases da der er flere brikker
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                        {
                         g.drawImage(blkpawn, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 2: {
+                    case 10:{
                         g.drawImage(blkknight, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 3: {
+                    case 11:{
                         g.drawImage(blkbishop, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 4: {
+                    case 9: {
                         g.drawImage(blkrook, yaxis*squareSize, xaxis*squareSize, null);
                         break;
                     }
-                    case 5: {
+                    case 12:{
                         g.drawImage(blkqueen, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 6: {
+                    case 13:{
                         g.drawImage(blkking, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 7: {
+                    case 14:
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18:
+                    case 19:
+                    case 20:
+                    case 21:
+                            {
                         g.drawImage(whtpawn, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 8: {
+                    case 23:{
                         g.drawImage(whtknight, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 9: {
+                    case 24:{
                         g.drawImage(whtbishop, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 10: {
+                    case 22:{
                         g.drawImage(whtrook, yaxis*squareSize, xaxis*squareSize, null);
                         break;
                     }
-                    case 11: {
+                    case 25: {
                         g.drawImage(whtqueen, yaxis*squareSize, xaxis*squareSize, null);
                         break;
                     }
-                    case 12: {
+                    case 26: {
                         g.drawImage(whtking, yaxis*squareSize, xaxis*squareSize, null);
                         break;
                     }
