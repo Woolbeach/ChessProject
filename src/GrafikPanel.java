@@ -57,20 +57,20 @@ public class GrafikPanel extends JPanel {
         try {
             //load black pieces into buffered images
 
-            blkpawn = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"DarkSide"+File.separator+"black_pawn.png"));
-            blkrook = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"DarkSide"+File.separator+"black_rook.png"));
-            blkknight = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"DarkSide"+File.separator+"black_knight.png"));
-            blkbishop = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"DarkSide"+File.separator+"black_bishop.png"));
-            blkqueen = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"DarkSide"+File.separator+"black_queen.png"));
-            blkking = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"DarkSide"+File.separator+"black_king.png"));
+            blkpawn = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_pawn.png"));
+            blkrook = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_rook.png"));
+            blkknight = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_knight.png"));
+            blkbishop = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_bishop.png"));
+            blkqueen = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_queen.png"));
+            blkking = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_king.png"));
 
             //load white pieces into buffered images
-            whtpawn = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"WhiteSide"+File.separator+"white_pawn.png"));
-            whtrook = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"WhiteSide"+File.separator+"white_rook.png"));
-            whtknight = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"WhiteSide"+File.separator+"white_knight.png"));
-            whtbishop = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"WhiteSide"+File.separator+"white_bishop.png"));
-            whtqueen = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"WhiteSide"+File.separator+"white_queen.png"));
-            whtking = ImageIO.read(new File("src"+File.separator+"chessIcons"+File.separator+"WhiteSide"+File.separator+"white_king.png"));
+            whtpawn = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_pawn.png"));
+            whtrook = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_rook.png"));
+            whtknight = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_knight.png"));
+            whtbishop = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_bishop.png"));
+            whtqueen = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_queen.png"));
+            whtking = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_king.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
