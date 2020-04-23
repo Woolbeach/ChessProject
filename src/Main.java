@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Scanner;
 import javax.swing.*;
 
 public class Main {
@@ -93,6 +92,7 @@ public class Main {
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[0],board)) {
                     System.out.println(bonderykket[0]);
                     movepieceonBoard(fromx, fromy, tox, toy, board);
+                    //playsoundhere
                     bonderykket[0]=true;
                     return;
                 }
