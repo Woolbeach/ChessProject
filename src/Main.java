@@ -1,7 +1,9 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Scanner;
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class Main {
@@ -46,6 +48,8 @@ public class Main {
         vindue.pack();
         vindue.setVisible(true);                                                    // åbn vinduet
 
+        File music = new File("ressources/background.wav");
+        //sound(music);
 
         vindue.addMouseListener(new MouseAdapter() {
             @Override
@@ -85,7 +89,6 @@ public class Main {
     }
 
     public static void movepiece(int fromx, int fromy, int tox, int toy, int[][] board,Bonde bonde,Tårn tårn,Rider rider,Løber løber,Dronning dronning,Konge konge,boolean[] bonderykket) {
-
         int casenummer=board[fromy][fromx];
         System.out.println(casenummer);
         switch (casenummer) {
@@ -93,6 +96,7 @@ public class Main {
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[0],board)) {
                     System.out.println(bonderykket[0]);
                     movepieceonBoard(fromx, fromy, tox, toy, board);
+
                     bonderykket[0]=true;
                     return;
                 }
@@ -102,6 +106,7 @@ public class Main {
                 System.out.println(bonderykket[1]);
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[1],board)){
                     movepieceonBoard(fromx,fromy,tox,toy,board);
+
                     bonderykket[1]=true;
                     return;
                 }
@@ -110,6 +115,7 @@ public class Main {
             case 3:{
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[2],board)){
                     movepieceonBoard(fromx,fromy,tox,toy,board);
+
                     bonderykket[2]=true;
                     return;
                 }
@@ -118,6 +124,7 @@ public class Main {
             case 4:{
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[3],board)){
                     movepieceonBoard(fromx,fromy,tox,toy,board);
+
                     bonderykket[3]=true;
                     return;
                 }
@@ -127,6 +134,7 @@ public class Main {
             case 5:{
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[4],board)){
                     movepieceonBoard(fromx,fromy,tox,toy,board);
+
                     bonderykket[4]=true;
                     return;
                 }
@@ -135,6 +143,7 @@ public class Main {
             case 6:{
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[5],board)){
                     movepieceonBoard(fromx,fromy,tox,toy,board);
+
                     bonderykket[5]=true;
                     return;
                 }
@@ -143,6 +152,7 @@ public class Main {
             case 7:{
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[6],board)){
                     movepieceonBoard(fromx,fromy,tox,toy,board);
+
                     bonderykket[6]=true;
                     return;
                 }
@@ -151,6 +161,7 @@ public class Main {
             case 8:{
                 if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[7],board)){
                     movepieceonBoard(fromx,fromy,tox,toy,board);
+
                     bonderykket[7]=true;
                     return;
                 }
@@ -187,7 +198,6 @@ public class Main {
             case 13: {
                 if(konge.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox])){
                     movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
                 }
                 break;
             }
@@ -298,9 +308,18 @@ public class Main {
         }
     }
     public static void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board){
+        File attack = new File("ressources/BrickDamage.wav");
+        File move = new File("ressources/MoveBrick.wav");
         int temp1 = board[fromy][fromx];
         board[fromy][fromx] = 0;
+        if(board[toy][tox] >=1){
+            sound(attack);
+        }
+        else{
+            sound(move);
+        }
         board[toy][tox] = temp1;
+
     }
     public static void LoadPieces(int[][] board) {
         //black pawns
@@ -340,6 +359,21 @@ public class Main {
         //bonde, tårn, konge, dronning, springer, hest
     }
 
+    //This method ensures that the game is able to play sounds, takes a .wav file as parameter.
+    public static void sound(File input) {
+        try {
+            Clip clip = AudioSystem.getClip();
+            //Loads in the designated sound input
+            clip.open(AudioSystem.getAudioInputStream(input));
+            //Starts the clip
+            clip.start();
+            //To ensure the entire clip is played, we sleep the thread until end of clip
+            //Thread.sleep(clip.getMicrosecondLength() / 1000);
+
+        } catch (Exception e) {
+
+        }
+    }
 
 }
 
