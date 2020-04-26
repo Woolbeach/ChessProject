@@ -8,7 +8,7 @@ public class Rider extends Brikker {
 
     @Override
     public boolean canMove(int destination_x, int destination_y,Brikker[][] board) {
-        Brikker possiblePiece=board[destination_y][destination_x];
+        Brikker possiblePiece = board[destination_x][destination_y];
         System.out.println(this.getY());
         System.out.println(this.getX());
         if(possiblePiece !=null)

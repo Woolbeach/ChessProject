@@ -82,7 +82,8 @@ public class Main {
 
     public static void movepiece(int fromx, int fromy, int tox, int toy,int[][] mitbrædt, Brikker[][] mitbrædt2) {
         Brikker brik = mitbrædt2[fromy][fromx];
-        if (brik.canMove(tox,toy,mitbrædt2) == true) {
+        System.out.println(brik);
+        if (brik.canMove(toy,tox,mitbrædt2) == true) {
             movepieceonBoard(fromx,fromy,tox,toy,mitbrædt,mitbrædt2);
         }
     }
@@ -99,7 +100,7 @@ public class Main {
         else{
             sound(move);
         }
-        if(board[toy][tox] == 5 || board[toy][tox] == 11){
+        if(board[toy][tox] == 6 || board[toy][tox] == 12){
             System.exit(1);
         }
         board[toy][tox] = temp1;
@@ -131,8 +132,8 @@ public class Main {
         board2[0][2]=4;
         board2[0][5]=4;
         //black king and queen
-        board[0][3] = new Konge(0,3,false);
-        board[0][4] = new Dronning(0,4,false);;
+        board[0][3] = new Dronning(0,3,false);
+        board[0][4] = new Konge(0,4,false);;
         board2[0][3]=5;
         board2[0][4]=6;
         //white pawns
@@ -156,8 +157,8 @@ public class Main {
         board2[7][2]=10;
         board2[7][5]=10;
         //white king and
-        board[7][3] = new Konge(7,3,true);
-        board[7][4] = new Dronning(7,4,true);
+        board[7][3] = new Dronning(7,3,true);
+        board[7][4] = new Konge(7,4,true);
         board2[7][3]=11;
         board2[7][4]=12;
         //bonde, tårn, konge, dronning, springer, hest
