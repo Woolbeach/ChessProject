@@ -153,6 +153,7 @@ public class GrafikPanel extends JPanel {
     }
 
 
+
     public static void selector(int xpos, int ypos){
 
     }

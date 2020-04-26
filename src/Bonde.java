@@ -1,10 +1,10 @@
+import java.net.URL;
 
 public class Bonde extends Brikker {
 
     public Bonde()
     {
         super();
-        String soundEffect = "ressources/MoveBrick.wav";
     }
 
     public boolean canMove(int fromx,int fromy,int tox, int toy,int fromID, int toID,boolean harrykket,int[][] board)
@@ -65,9 +65,6 @@ public class Bonde extends Brikker {
         if(Math.abs(fromy-tox)>1 || Math.abs(fromx-tox)>0){
             return false;
         }
-
         return true;
     }
-
-
 }
