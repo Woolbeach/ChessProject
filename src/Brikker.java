@@ -16,23 +16,6 @@ public class Brikker {
         }
         return false;
     }
-
-    //This method checks whether or not the toID corresponds to an enemy piece
-    public boolean isAttack(int fromID, int toID) {
-        if (fromID > 0 && fromID < 14) {
-            if (toID > 13 && toID < 27) {
-                System.out.println("Angreb!");
-                return true;
-            } else if (fromID > 13 && fromID < 27) {
-                if (toID < 0 && toID < 14) {
-                    System.out.println("Angreb!");
-                    return true;
-                }
-            }
-        }
-        System.out.println("Ikke et angreb");
-        return false;
-    }
 }
 
 

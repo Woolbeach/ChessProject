@@ -25,7 +25,6 @@ public class Main {
         final int[] oldypos = new int[1];
         LoadPieces(mitbræt);
 
-
         int square = 80;
         GrafikPanel panel = new GrafikPanel(square, mitbræt);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
@@ -370,11 +369,7 @@ public class Main {
             clip.open(AudioSystem.getAudioInputStream(input));
             //Starts the clip
             clip.start();
-            //To ensure the entire clip is played, we sleep the thread until end of clip
-            //Thread.sleep(clip.getMicrosecondLength() / 1000);
-
         } catch (Exception e) {
-
         }
     }
 
