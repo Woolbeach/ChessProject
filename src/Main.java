@@ -2,28 +2,21 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println();
-        //Filip: har lavet et af hvert brik objekt
-        Bonde bonde = new Bonde();
-        Dronning dronning = new Dronning();
-        Konge konge = new Konge();
-        Løber løber = new Løber();
-        Rider rider = new Rider();
-        Tårn tårn = new Tårn();
-        //Filip har lavet en bonderykket array som indeholder om bonden har rykket for første gang
-        boolean[] bonderykket = {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
+
+        Brikker[][] mitbræt2 = new Brikker[8][8];
 
         int[][] mitbræt = new int[8][8];
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
-        LoadPieces(mitbræt);
+        LoadPieces(mitbræt,mitbræt2);
 
         int square = 80;
         GrafikPanel panel = new GrafikPanel(square, mitbræt);                          // opret panelet
@@ -62,7 +55,7 @@ public class Main {
                 System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
                 System.out.println("piece id:" + mitbræt[ypos/square][xpos/square]);
                 if (clicks[0] > 1) {
-                    movepiece(oldxpos[0], oldypos[0], xpos / square, ypos / square, mitbræt,bonde,tårn,rider,løber,dronning,konge,bonderykket);
+                    movepiece(oldxpos[0], oldypos[0], xpos / square, ypos / square, mitbræt,mitbræt2);
                     clicks[0] = 0;
                     vindue.repaint();
                 } else {
@@ -87,229 +80,18 @@ public class Main {
         });
     }
 
-    public static void movepiece(int fromx, int fromy, int tox, int toy, int[][] board,Bonde bonde,Tårn tårn,Rider rider,Løber løber,Dronning dronning,Konge konge,boolean[] bonderykket) {
-        int casenummer=board[fromy][fromx];
-        System.out.println(casenummer);
-        switch (casenummer) {
-            case 1:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[0],board)) {
-                    System.out.println(bonderykket[0]);
-                    movepieceonBoard(fromx, fromy, tox, toy, board);
-
-                    bonderykket[0]=true;
-                    return;
-                }
-                break;
-            }
-            case 2:{
-                System.out.println(bonderykket[1]);
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[1],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-
-                    bonderykket[1]=true;
-                    return;
-                }
-                break;
-            }
-            case 3:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[2],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-
-                    bonderykket[2]=true;
-                    return;
-                }
-                break;
-            }
-            case 4:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[3],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-
-                    bonderykket[3]=true;
-                    return;
-                }
-
-                break;
-            }
-            case 5:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[4],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-
-                    bonderykket[4]=true;
-                    return;
-                }
-                break;
-            }
-            case 6:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[5],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-
-                    bonderykket[5]=true;
-                    return;
-                }
-                break;
-            }
-            case 7:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[6],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-
-                    bonderykket[6]=true;
-                    return;
-                }
-                break;
-            }
-            case 8:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[7],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-
-                    bonderykket[7]=true;
-                    return;
-                }
-                break;
-            }
-            case 9:{
-                if(tårn.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],board)) {
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-            case 10:{
-                if(rider.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox])) {
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-            case 11:{
-                if(løber.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-            case 12:{
-                if(dronning.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox])){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-            case 13: {
-                if(konge.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox])){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                }
-                break;
-            }
-            case 14:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[8],board)) {
-                    movepieceonBoard(fromx, fromy, tox, toy, board);
-                    bonderykket[8]=true;
-                    return;
-                }
-                break;
-            }
-            case 15:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[9],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    bonderykket[9]=true;
-                    return;
-                }
-                break;
-            }
-            case 16:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[10],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    bonderykket[10]=true;
-                    return;
-                }
-                break;
-            }
-            case 17:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[11],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    bonderykket[11]=true;
-                    return;
-                }
-
-                break;
-            }
-            case 18:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[12],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    bonderykket[12]=true;
-                    return;
-                }
-                break;
-            }
-            case 19:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[13],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    bonderykket[13]=true;
-                    return;
-                }
-                break;
-            }
-            case 20:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[14],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    bonderykket[14]=true;
-                    return;
-                }
-                break;
-            }
-            case 21:{
-                if(bonde.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],bonderykket[15],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    bonderykket[15]=true;
-                    return;
-                }
-                break;
-            }
-            case 22:{
-                if(tårn.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],board)) {
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-            case 23:{
-                if(rider.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox])) {
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-            case 24:{
-                if(løber.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox],board)){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-            case 25:{
-                if(dronning.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox])){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-            case 26: {
-                if(konge.canMove(fromx,fromy,tox,toy,board[fromy][fromx],board[toy][tox])){
-                    movepieceonBoard(fromx,fromy,tox,toy,board);
-                    return;
-                }
-                break;
-            }
-
-        }
-        if (board[fromy][fromx] == 0) {
-            return;
+    public static void movepiece(int fromx, int fromy, int tox, int toy,int[][] mitbrædt, Brikker[][] mitbrædt2) {
+        Brikker brik = mitbrædt2[fromy][fromx];
+        if (brik.canMove(tox,toy,mitbrædt2) == true) {
+            movepieceonBoard(fromx,fromy,tox,toy,mitbrædt,mitbrædt2);
         }
     }
-    public static void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board){
+    public static void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board,Brikker[][] board2){
         File attack = new File("ressources/BrickDamage.wav");
         File move = new File("ressources/MoveBrick.wav");
         int temp1 = board[fromy][fromx];
+        Brikker brik= board2[fromy][fromx];
+        board2[fromy][fromx]=null;
         board[fromy][fromx] = 0;
         if(board[toy][tox] >=1){
             sound(attack);
@@ -317,50 +99,72 @@ public class Main {
         else{
             sound(move);
         }
-        if(board[toy][tox] == 12 || board[toy][tox] == 25){
+        if(board[toy][tox] == 5 || board[toy][tox] == 11){
             System.exit(1);
         }
         board[toy][tox] = temp1;
+        board2[toy][tox]=brik;
 
     }
-    public static void LoadPieces(int[][] board) {
+    //board2 er den med tal
+    //board er den med brikkerne
+    public static void LoadPieces(int[][] board2,Brikker[][] board) {
         //black pawns
         for (int i = 0; i < 8; i++) {
-            board[1][i] = i+1;
+            board[1][i] = new Bonde(1,i,false);
+            board2[1][i]=1;
         }
         //filip har lavet flere brikker da vi har brug for en bønder hver da de har et specielt move med en boolean
         //black rooks
-        board[0][0] = 9;
-        board[0][7] = 9;
+        board[0][0] = new Tårn(0,0,false);
+        board[0][7] = new Tårn(0,7,false);
+        board2[0][0]=2;
+        board2[0][7]=2;
         //black knights
-        board[0][1] = 10;
-        board[0][6] = 10;
+        board[0][1] = new Rider(0,1,false);
+        board[0][6] = new Rider(0,6,false);
+        board2[0][1]=3;
+        board2[0][6]=3;
         //black bishops
-        board[0][2] = 11;
-        board[0][5] = 11;
+        board[0][2] = new Løber(0,2,false);
+        board[0][5] = new Løber(0,5,false);
+        board2[0][2]=4;
+        board2[0][5]=4;
         //black king and queen
-        board[0][3] = 13;
-        board[0][4] = 12;
-
+        board[0][3] = new Konge(0,3,false);
+        board[0][4] = new Dronning(0,4,false);;
+        board2[0][3]=5;
+        board2[0][4]=6;
         //white pawns
         for (int i = 0; i <8; i++) {
-            board[6][i] = i+13+1;
+            board[6][i] = new Bonde(6,i,true);
+            board2[6][i]=7;
         }
         //white rooks
-        board[7][0] = 22;
-        board[7][7] = 22;
+        board[7][0] = new Tårn(7,0,true);
+        board[7][7] = new Tårn(7,7,true);
+        board2[7][0]=8;
+        board2[7][7]=8;
         //white knights
-        board[7][1] = 23;
-        board[7][6] = 23;
+        board[7][1] = new Rider(7,1,true);
+        board[7][6] = new Rider(7,6,true);
+        board2[7][1]=9;
+        board2[7][6]=9;
         //white bishops
-        board[7][2] = 24;
-        board[7][5] = 24;
+        board[7][2] = new Løber(7,2,true);
+        board[7][5] = new Løber(7,5,true);
+        board2[7][2]=10;
+        board2[7][5]=10;
         //white king and
-        board[7][3] = 25;
-        board[7][4] = 26;
+        board[7][3] = new Konge(7,3,true);
+        board[7][4] = new Dronning(7,4,true);
+        board2[7][3]=11;
+        board2[7][4]=12;
         //bonde, tårn, konge, dronning, springer, hest
     }
-
+    public Brikker getPiece(int x, int y,Brikker[][] board) {
+        return board[y][x];
+    }
     //This method ensures that the game is able to play sounds, takes a .wav file as parameter.
     public static void sound(File input) {
         try {

@@ -1,20 +1,17 @@
 
 public class Tårn extends Brikker {
 
-    public Tårn()
+    public Tårn(int x,int y,boolean is_white)
     {
-        super();
+        super(x,y,is_white);
     }
-
-
     public boolean canMove(int fromx,int fromy,int tox, int toy,int fromID, int toID,int[][] board)
     {
         // Grundregel 1. En brik må ikke ramme sin egen farve
-        System.out.println(fromID+"   "+toID);
-        if((fromID>0 && fromID<14) && (toID>0 && toID<14)){
+        if(fromID>0 && fromID<7 && toID>0 && toID<7){
             return false;
         }
-        if((fromID>13 && fromID<27) && (toID>13 && toID<27)){
+        if(fromID>7 && fromID<13 && toID>7 && toID<13){
             return false;
         }
         // tårnet må kun gå op,ned,venstre og højre

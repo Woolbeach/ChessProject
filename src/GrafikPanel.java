@@ -81,71 +81,58 @@ public class GrafikPanel extends JPanel {
                 switch (board[xaxis][yaxis]) {
                     //filip: har lavet flere cases da der er flere brikker
                     case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
                         {
                         g.drawImage(blkpawn, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 10:{
+                    case 3:{
                         g.drawImage(blkknight, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 11:{
+                    case 4:{
                         g.drawImage(blkbishop, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 9: {
+                    case 2: {
                         g.drawImage(blkrook, yaxis*squareSize, xaxis*squareSize, null);
                         break;
                     }
-                    case 12:{
+                    case 5:{
                         g.drawImage(blkqueen, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 13:{
+                    case 6:{
                         g.drawImage(blkking, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 14:
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                    case 20:
-                    case 21:
+                    case 7:
                             {
                         g.drawImage(whtpawn, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 23:{
+                    case 9:{
                         g.drawImage(whtknight, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 24:{
+                    case 10:{
                         g.drawImage(whtbishop, squareSize*yaxis, squareSize*xaxis, null);
                         break;
                     }
-                    case 22:{
+                    case 8:{
                         g.drawImage(whtrook, yaxis*squareSize, xaxis*squareSize, null);
                         break;
                     }
-                    case 25: {
+                    case 11: {
                         g.drawImage(whtqueen, yaxis*squareSize, xaxis*squareSize, null);
                         break;
                     }
-                    case 26: {
+                    case 12: {
                         g.drawImage(whtking, yaxis*squareSize, xaxis*squareSize, null);
                         break;
                     }
                     default: {
-                        System.out.print("");
+
+                        //System.out.print("Ups, ukendt briknummer: ") ;
                     }
                 }
             }
