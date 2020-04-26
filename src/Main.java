@@ -49,7 +49,7 @@ public class Main {
         vindue.setVisible(true);                                                    // åbn vinduet
 
         File music = new File("ressources/background.wav");
-        //sound(music);
+        sound(music);
 
         vindue.addMouseListener(new MouseAdapter() {
             @Override
@@ -318,6 +318,9 @@ public class Main {
         else{
             sound(move);
         }
+        if(board[toy][tox] == 12 || board[toy][tox] == 25){
+            System.exit(1);
+        }
         board[toy][tox] = temp1;
 
     }
@@ -337,8 +340,8 @@ public class Main {
         board[0][2] = 11;
         board[0][5] = 11;
         //black king and queen
-        board[0][3] = 12;
-        board[0][4] = 13;
+        board[0][3] = 13;
+        board[0][4] = 12;
 
         //white pawns
         for (int i = 0; i <8; i++) {
