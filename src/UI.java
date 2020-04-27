@@ -8,7 +8,10 @@ import java.awt.event.ActionListener;
 public class UI {
 
 
+    public boolean muteon = true;
+    public int temp1, temp2;
     public BoardLogic boardLogic;
+    public Main main;
 
     public UI() {
         musicSlider.addChangeListener(new ChangeListener() {
@@ -22,12 +25,50 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Mute!");
+                if (muteon) {
+                    System.out.println("unmute");
+                    muteButton.setText("Unmute All");
+                    temp1 = sfxSlider.getValue();
+                    temp2 = musicSlider.getValue();
+                    boardLogic.sounds.setMusicvolume(0);
+                    boardLogic.sounds.setSfxvolume(0);
+                    sfxSlider.setValue(0);
+                    musicSlider.setValue(0);
+                    muteon = !muteon;
+                } else {
+                    sfxSlider.setValue(temp1);
+                    musicSlider.setValue(temp2);
+                    boardLogic.sounds.setMusicvolume(temp2);
+                    boardLogic.sounds.setSfxvolume(temp1);
+                    System.out.println("mute now");
+                    muteButton.setText("Mute All");
+                    muteon = !muteon;
+                }
             }
         });
         newGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("New game!");
+
+                Object[] options = {"Yes, please",
+                        "No, thanks"};
+                int n = JOptionPane.showOptionDialog(JOptionPane.getRootFrame(),
+                        "Want to create a new game?",
+                        "A Silly Question",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+
+                System.out.println("New game! " + n);
+
+                if (n == 0) {
+                    boardLogic.newGame();
+                }
+                /*String spm = "Want to create a new game?";
+                String svar = JOptionPane.showInputDialog(spm, "ja");*/
+
             }
         });
         sfxSlider.addChangeListener(new ChangeListener() {

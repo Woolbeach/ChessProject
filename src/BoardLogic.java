@@ -11,7 +11,24 @@ public class BoardLogic {
         sounds.playBackGround();
     }
 
-    public static void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
+    //virker ikke efter hensigt, den sætter brikker på rigtige pladser men man kan ikke rykke på dem
+    public void newGame(){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                boardTracking[i][j]=0;
+                pieceLogic[i][j] = new GamePiece(j,i,false);
+            }
+        }
+        whitesTurn = true;
+        numberOfTurns = 1;
+        LoadPieces(boardTracking,pieceLogic);
+    }
+
+    public void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
+
+
+
+
         //black pawns
         for (int i = 0; i < 8; i++) {
             pieceArray[1][i] = new Pawn(1, i, false);
