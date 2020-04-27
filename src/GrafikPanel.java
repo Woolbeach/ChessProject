@@ -37,7 +37,6 @@ public class GrafikPanel extends JPanel {
         }
 
         if(selected){
-            Brikker klikket =
             g.drawRect(selx,sely,squareSize,squareSize);
 
         }
