@@ -83,6 +83,9 @@ public class Main {
     public static void movepiece(int fromx, int fromy, int tox, int toy,int[][] mitbrædt, Brikker[][] mitbrædt2) {
         Brikker brik = mitbrædt2[fromy][fromx];
         System.out.println(brik);
+        if(brik == null){
+            return;
+        }
         if (brik.canMove(toy,tox,mitbrædt2) == true) {
             movepieceonBoard(fromx,fromy,tox,toy,mitbrædt,mitbrædt2);
         }
