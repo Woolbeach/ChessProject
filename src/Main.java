@@ -41,7 +41,7 @@ public class Main {
         vindue.setVisible(true);                                                    // åbn vinduet
 
         File music = new File("ressources/background.wav");
-        sound(music);
+        //sound(music);
 
         vindue.addMouseListener(new MouseAdapter() {
             @Override
@@ -80,14 +80,14 @@ public class Main {
         });
     }
 
-    public static void movepiece(int fromx, int fromy, int tox, int toy,int[][] mitbrædt, Brikker[][] mitbrædt2) {
-        Brikker brik = mitbrædt2[fromy][fromx];
+    public static void movepiece(int fromx, int fromy, int tox, int toy,int[][] mitbræt, Brikker[][] mitbræt2) {
+        Brikker brik = mitbræt2[fromy][fromx];
         System.out.println(brik);
         if(brik == null){
             return;
         }
-        if (brik.canMove(toy,tox,mitbrædt2) == true) {
-            movepieceonBoard(fromx,fromy,tox,toy,mitbrædt,mitbrædt2);
+        if (brik.canMove(toy,tox,mitbræt2) == true) {
+            movepieceonBoard(fromx,fromy,tox,toy,mitbræt,mitbræt2);
         }
     }
     public static void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board,Brikker[][] board2){
