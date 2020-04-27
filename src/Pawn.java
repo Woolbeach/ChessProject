@@ -30,7 +30,7 @@ public class Pawn extends GamePiece {
         //Pawns may move two fields from their starting position
 
         //White
-        if(has_moved==false && this.isWhite() && this.getX() == 6 && (Math.abs(destination_x - this.getX()) == initialMove))
+        if(has_moved==false && this.isWhite() && this.getX() == 6 && (Math.abs(destination_x - this.getX()) == initialMove && destination_y == this.getY()))
         {
             for(int i=1; i < initialMove; i++)
             {
@@ -47,7 +47,7 @@ public class Pawn extends GamePiece {
         }
 
         //Black
-        if(has_moved==false && this.isBlack() && this.getX()==1 && (Math.abs(destination_x - this.getX()) == initialMove))
+        if(has_moved==false && this.isBlack() && this.getX()==1 && (Math.abs(destination_x - this.getX()) == initialMove && destination_y == this.getY()))
         {
             for(int i=1; i < initialMove;i++)
             {
