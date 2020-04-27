@@ -4,18 +4,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class GrafikPanel extends JPanel {
+public class Graphics extends JPanel {
     public int squareSize = 10;
     public int[][] board;
     public boolean selected;
     public int selx,sely;
 
-    public GrafikPanel(int input, int[][] braet) {
+    public Graphics(int input, int[][] braet) {
         board = braet;
         squareSize = input;
     }
 
-    public void paintComponent(Graphics g) {
+    public void paintComponent(java.awt.Graphics g) {
 
         // Herunder referer g til et Graphics-objekt man kan tegne med
         super.paintComponent(g);                // tegn først baggrunden på panelet

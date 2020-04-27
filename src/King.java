@@ -1,13 +1,13 @@
-public class Konge extends Brikker {
+public class King extends GamePiece {
 
-    public Konge(int x,int y,boolean is_white)
+    public King(int x, int y, boolean is_white)
     {
         super(x,y,is_white);
     }
 
     @Override
-    public boolean canMove(int destination_x, int destination_y, Brikker[][] board) {
-        Brikker possiblePiece = board[destination_x][destination_y];
+    public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
+        GamePiece possiblePiece = board[destination_x][destination_y];
         System.out.println(possiblePiece);
         if(possiblePiece !=null)
         {

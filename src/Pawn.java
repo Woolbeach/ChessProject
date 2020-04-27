@@ -1,35 +1,40 @@
-public class Bonde extends Brikker {
+public class Pawn extends GamePiece {
     private boolean has_moved;
-    public Bonde(int x,int y,boolean is_white) {
+    int initialMove = 2;
+    public Pawn(int x, int y, boolean is_white) {
         super(x, y, is_white);
-        has_moved=false;
+        has_moved = false;
     }
 
     @Override
-    public boolean canMove(int destination_x, int destination_y, Brikker[][] board) {
-        Brikker possiblePiece = board[destination_x][destination_y];
-        System.out.println("x:"+destination_x);
-        System.out.println("y:"+destination_y);
-        // dette er hvad gør at den ikke kan ramme sin egen farve
+    public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
+        GamePiece possiblePiece = board[destination_x][destination_y];
+        System.out.println("x: "+destination_x);
+        System.out.println("y: "+destination_y);
 
+        //Rule #1
+        //Cannot attack own pieces
         if(possiblePiece !=null)
         {
-            if(possiblePiece.isWhite()&& this.isWhite())
+            if(possiblePiece.isWhite() && this.isWhite())
             {
                 return false;
             }
-            if(possiblePiece.isBlack()&& this.isBlack())
+            if(possiblePiece.isBlack() && this.isBlack())
             {
                 return false;
             }
         }
-        // dette lange check er for det første hop, siden en bonde må gå 2 frem
-        if(has_moved==false && this.isWhite() && this.getX()==6 && (Math.abs(destination_x - this.getX())==2))
+
+        //Rule #2
+        //Pawns may move two fields from their starting position
+
+        //White
+        if(has_moved==false && this.isWhite() && this.getX() == 6 && (Math.abs(destination_x - this.getX()) == initialMove))
         {
-            int spaces_to_move=Math.abs(destination_x - this.getX());
-            for(int i=1; i<spaces_to_move;i++)
+            for(int i=1; i < initialMove; i++)
             {
-                Brikker p=board[destination_x][destination_y];
+                GamePiece p=board[destination_x][destination_y];
                 if(p != null)
                 {
                     return false;
@@ -40,12 +45,13 @@ public class Bonde extends Brikker {
             this.setY(destination_y);
             return true;
         }
-        if(has_moved==false && this.isBlack() && this.getX()==1&&(Math.abs(destination_x - this.getX())==2))
+
+        //Black
+        if(has_moved==false && this.isBlack() && this.getX()==1 && (Math.abs(destination_x - this.getX()) == initialMove))
         {
-            int spaces_to_move=Math.abs(destination_x - this.getX());
-            for(int i=1; i<spaces_to_move;i++)
+            for(int i=1; i < initialMove;i++)
             {
-                Brikker p=board[destination_x][destination_y];
+                GamePiece p=board[destination_x][destination_y];
                 if(p != null)
                 {
                     return false;
@@ -56,7 +62,9 @@ public class Bonde extends Brikker {
             this.setY(destination_y);
             return true;
         }
-        // sørger for at alt andet end 1 gang op, venstre og højre er tilladt og lige omvendt for sort
+
+        //Rule #3
+        //Pawns may move forwards, and attack opposing force diagonally
         if (this.isWhite())
         {
             if (this.getX()!=destination_x+1 && (this.getY()!=destination_y+1 || this.getY()!=destination_y-1 || this.getY()!=destination_y)) {
@@ -73,9 +81,7 @@ public class Bonde extends Brikker {
         {
             return false;
         }
-        System.out.println("det er sket3");
-        // sørger for at den ikke kan ødelægge en brik foran den og den ikke kan gå til højre op eller venstre op
-        // uden der er en brik fra modstanderens side der
+
         if (possiblePiece==null && this.isWhite() && (destination_y+1==this.getY() || destination_y-1==this.getY())){
             return false;
         }
@@ -88,10 +94,10 @@ public class Bonde extends Brikker {
         if(possiblePiece!=null && destination_x-1==this.getX() && possiblePiece.isWhite()&& destination_y==this.getY()){
             return false;
         }
+
+        //Updates position of the pawn piece
         this.setX(destination_x);
         this.setY(destination_y);
         return true;
-
-
     }
 }

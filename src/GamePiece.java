@@ -1,14 +1,14 @@
-public class Brikker {
+public class GamePiece {
     private int x;
     private int y;
     final private boolean is_white;
-    public Brikker(int x,int y,boolean is_white) {
+    public GamePiece(int x, int y, boolean is_white) {
         this.is_white = is_white;
         this.x = x;
         this.y = y;
     }
 
-    public boolean canMove(int destination_x, int destination_y,Brikker[][] board) {
+    public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
         return false;
     }
 
