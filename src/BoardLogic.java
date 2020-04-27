@@ -9,7 +9,6 @@ public class BoardLogic {
     public BoardLogic(){
        LoadPieces(boardTracking, pieceLogic);
        sounds.getBackgroundSound();
-
     }
 
     public static void LoadPieces(int[][] board2,Brikker[][] board) {

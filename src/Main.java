@@ -8,7 +8,6 @@ public class Main {
         BoardLogic newGame = new BoardLogic();
 
 
-
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
@@ -19,12 +18,27 @@ public class Main {
 
         JPanel mainPanel = new JPanel();
 
+
+
+
         Dimension mySize = new Dimension();
         mySize.setSize(square * 8, square * 8);
-
         panel.setPreferredSize(mySize);
 
-        mainPanel.add(panel);
+
+        LayoutManager mitLay = new GridBagLayout();
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = mainPanel.getComponentCount()+2;
+        gbc.gridy = 0;
+
+        mainPanel.setLayout(mitLay);
+        UI mitUI = new UI();
+        mainPanel.add(mitUI.$$$getRootComponent$$$(),gbc);
+
+        gbc.gridx = 0;
+
+        mainPanel.add(panel,gbc);
+
 
         vindue.add(mainPanel);                                                      // vis panelet i vinduet
 
@@ -43,9 +57,9 @@ public class Main {
                 int ypos = e.getY() - 31;
 
                 System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
-                System.out.println("piece id:" + newGame.boardTracking[ypos/square][xpos/square]);
+                System.out.println("piece id:" + newGame.boardTracking[ypos / square][xpos / square]);
                 if (clicks[0] > 1) {
-                    newGame.movepiece(newGame.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square,newGame.boardTracking,newGame.pieceLogic);
+                    newGame.movepiece(newGame.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, newGame.boardTracking, newGame.pieceLogic);
                     clicks[0] = 0;
                     vindue.repaint();
                 } else {
