@@ -9,19 +9,14 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-
-        Brikker[][] pieceLogic = new Brikker[8][8];
-        int[][] boardTracking = new int[8][8];
-
-        BoardLogic newGame = new BoardLogic(pieceLogic, boardTracking);
+        BoardLogic newGame = new BoardLogic();
 
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
-        newGame.LoadPieces(boardTracking, pieceLogic);
 
         int square = 80;
-        GrafikPanel panel = new GrafikPanel(square, boardTracking);                          // opret panelet
+        GrafikPanel panel = new GrafikPanel(square, newGame.boardTracking);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
 
         JPanel mainPanel = new JPanel();
@@ -54,9 +49,9 @@ public class Main {
 
 
                 System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
-                System.out.println("piece id:" + boardTracking[ypos/square][xpos/square]);
+                System.out.println("piece id:" + newGame.boardTracking[ypos/square][xpos/square]);
                 if (clicks[0] > 1) {
-                    newGame.movepiece(oldxpos[0], oldypos[0], xpos / square, ypos / square, boardTracking,pieceLogic);
+                    newGame.movepiece(oldxpos[0], oldypos[0], xpos / square, ypos / square,newGame.boardTracking,newGame.pieceLogic);
                     clicks[0] = 0;
                     vindue.repaint();
                 } else {

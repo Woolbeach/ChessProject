@@ -1,9 +1,11 @@
 import java.io.File;
 
 public class BoardLogic {
+    Brikker[][] pieceLogic = new Brikker[8][8];
+    int[][] boardTracking = new int[8][8];
 
-    public BoardLogic(Brikker[][] pieceLogic, int[][] boardTracking){
-
+    public BoardLogic(){
+       LoadPieces(boardTracking, pieceLogic);
     }
 
     public static void LoadPieces(int[][] board2,Brikker[][] board) {
@@ -90,4 +92,8 @@ public class BoardLogic {
         board2[toy][tox]=brik;
 
     }
+    public Brikker getPieceLogic(int x, int y){
+        return pieceLogic[x][y];
+    }
+
 }
