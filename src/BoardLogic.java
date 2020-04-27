@@ -1,7 +1,7 @@
 import java.io.File;
 
 public class BoardLogic {
-    Brikker[][] pieceLogic = new Brikker[8][8];
+    GamePiece[][] pieceLogic = new GamePiece[8][8];
     int[][] boardTracking = new int[8][8];
     Sounds sounds = new Sounds();
     boolean whitesTurn = true;
@@ -10,103 +10,99 @@ public class BoardLogic {
     public BoardLogic(){
        LoadPieces(boardTracking, pieceLogic);
        sounds.getBackgroundSound();
-
     }
 
-    public static void LoadPieces(int[][] board2,Brikker[][] board) {
+    public static void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
         //black pawns
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Bonde(1,i,false);
-            board2[1][i]=1;
+            pieceArray[1][i] = new Pawn(1,i,false);
+            boardArray[1][i]=1;
         }
-        //filip har lavet flere brikker da vi har brug for en bønder hver da de har et specielt move med en boolean
-        //black rooks
-        board[0][0] = new Tårn(0,0,false);
-        board[0][7] = new Tårn(0,7,false);
-        board2[0][0]=2;
-        board2[0][7]=2;
+
+        pieceArray[0][0] = new Rook(0,0,false);
+        pieceArray[0][7] = new Rook(0,7,false);
+        boardArray[0][0]=2;
+        boardArray[0][7]=2;
         //black knights
-        board[0][1] = new Rider(0,1,false);
-        board[0][6] = new Rider(0,6,false);
-        board2[0][1]=3;
-        board2[0][6]=3;
+        pieceArray[0][1] = new Knight(0,1,false);
+        pieceArray[0][6] = new Knight(0,6,false);
+        boardArray[0][1]=3;
+        boardArray[0][6]=3;
         //black bishops
-        board[0][2] = new Løber(0,2,false);
-        board[0][5] = new Løber(0,5,false);
-        board2[0][2]=4;
-        board2[0][5]=4;
+        pieceArray[0][2] = new Bishop(0,2,false);
+        pieceArray[0][5] = new Bishop(0,5,false);
+        boardArray[0][2]=4;
+        boardArray[0][5]=4;
         //black king and queen
-        board[0][3] = new Dronning(0,3,false);
-        board[0][4] = new Konge(0,4,false);;
-        board2[0][3]=5;
-        board2[0][4]=6;
+        pieceArray[0][3] = new Queen(0,3,false);
+        pieceArray[0][4] = new King(0,4,false);;
+        boardArray[0][3]=5;
+        boardArray[0][4]=6;
         //white pawns
         for (int i = 0; i <8; i++) {
-            board[6][i] = new Bonde(6,i,true);
-            board2[6][i]=7;
+            pieceArray[6][i] = new Pawn(6,i,true);
+            boardArray[6][i]=7;
         }
         //white rooks
-        board[7][0] = new Tårn(7,0,true);
-        board[7][7] = new Tårn(7,7,true);
-        board2[7][0]=8;
-        board2[7][7]=8;
+        pieceArray[7][0] = new Rook(7,0,true);
+        pieceArray[7][7] = new Rook(7,7,true);
+        boardArray[7][0]=8;
+        boardArray[7][7]=8;
         //white knights
-        board[7][1] = new Rider(7,1,true);
-        board[7][6] = new Rider(7,6,true);
-        board2[7][1]=9;
-        board2[7][6]=9;
+        pieceArray[7][1] = new Knight(7,1,true);
+        pieceArray[7][6] = new Knight(7,6,true);
+        boardArray[7][1]=9;
+        boardArray[7][6]=9;
         //white bishops
-        board[7][2] = new Løber(7,2,true);
-        board[7][5] = new Løber(7,5,true);
-        board2[7][2]=10;
-        board2[7][5]=10;
+        pieceArray[7][2] = new Bishop(7,2,true);
+        pieceArray[7][5] = new Bishop(7,5,true);
+        boardArray[7][2]=10;
+        boardArray[7][5]=10;
         //white king and
-        board[7][3] = new Dronning(7,3,true);
-        board[7][4] = new Konge(7,4,true);
-        board2[7][3]=11;
-        board2[7][4]=12;
-        //bonde, tårn, konge, dronning, springer, hest
-    }
-    public void movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy,int[][] mitbræt, Brikker[][] mitbræt2) {
-        Brikker brik = mitbræt2[fromy][fromx];
+        pieceArray[7][3] = new Queen(7,3,true);
+        pieceArray[7][4] = new King(7,4,true);
+        boardArray[7][3]=11;
+        boardArray[7][4]=12;
 
-        if(brik == null) {
+    }
+    public void movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy,int[][] boardArray, GamePiece[][] pieceArray) {
+        GamePiece currentPiece = pieceArray[fromy][fromx];
+
+        if(currentPiece == null) {
             return;
         }
-        if(whosturn == brik.isBlack()){
+        if(whosturn == currentPiece.isBlack()){
             return;
         }
-        else if(!whosturn == brik.isWhite()){
+        else if(!whosturn == currentPiece.isWhite()){
             return;
         }
-        System.out.println(brik);
-        if (brik.canMove(toy,tox,mitbræt2) == true) {
-            movepieceonBoard(fromx,fromy,tox,toy,mitbræt,mitbræt2);
+        System.out.println(currentPiece);
+        if (currentPiece.canMove(toy,tox,pieceArray) == true) {
+            movepieceonBoard(fromx,fromy,tox,toy,boardArray,pieceArray);
             whitesTurn = !whitesTurn;
             numberOfTurns++;
         }
     }
-    public void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board,Brikker[][] board2){
-        File attack = new File("ressources/BrickDamage.wav");
-        File move = new File("ressources/MoveBrick.wav");
-        int temp1 = board[fromy][fromx];
-        Brikker brik= board2[fromy][fromx];
-        board2[fromy][fromx]=null;
-        board[fromy][fromx] = 0;
-        if(board[toy][tox] >=1){
+    public void movepieceonBoard(int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray){
+        int temp1 = boardArray[fromy][fromx];
+        GamePiece currentPiece = pieceArray[fromy][fromx];
+        pieceArray[fromy][fromx]=null;
+        boardArray[fromy][fromx] = 0;
+        if(boardArray[toy][tox] >=1){
             sounds.getAttackSound();
         }
         else{
             sounds.getMoveSound();
         }
-        if(board[toy][tox] == 6 || board[toy][tox] == 12){
+        if(boardArray[toy][tox] == 6 || boardArray[toy][tox] == 12){
             System.exit(1);
         }
-        board[toy][tox] = temp1;
-        board2[toy][tox]=brik;
+        boardArray[toy][tox] = temp1;
+        pieceArray[toy][tox]=currentPiece;
 
     }
-    public Brikker getPieceLogic(int x, int y){
+    public GamePiece getPieceLogic(int x, int y){
         return pieceLogic[x][y];
     }
 

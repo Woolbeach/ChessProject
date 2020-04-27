@@ -1,13 +1,13 @@
-public class Bonde extends Brikker {
+public class Pawn extends GamePiece {
     private boolean has_moved;
-    public Bonde(int x,int y,boolean is_white) {
+    public Pawn(int x, int y, boolean is_white) {
         super(x, y, is_white);
         has_moved=false;
     }
 
     @Override
-    public boolean canMove(int destination_x, int destination_y, Brikker[][] board) {
-        Brikker possiblePiece = board[destination_x][destination_y];
+    public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
+        GamePiece possiblePiece = board[destination_x][destination_y];
         System.out.println("x:"+destination_x);
         System.out.println("y:"+destination_y);
         // dette er hvad gør at den ikke kan ramme sin egen farve
@@ -29,7 +29,7 @@ public class Bonde extends Brikker {
             int spaces_to_move=Math.abs(destination_x - this.getX());
             for(int i=1; i<spaces_to_move;i++)
             {
-                Brikker p=board[destination_x][destination_y];
+                GamePiece p=board[destination_x][destination_y];
                 if(p != null)
                 {
                     return false;
@@ -45,7 +45,7 @@ public class Bonde extends Brikker {
             int spaces_to_move=Math.abs(destination_x - this.getX());
             for(int i=1; i<spaces_to_move;i++)
             {
-                Brikker p=board[destination_x][destination_y];
+                GamePiece p=board[destination_x][destination_y];
                 if(p != null)
                 {
                     return false;

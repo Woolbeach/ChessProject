@@ -1,14 +1,14 @@
 
-public class Rider extends Brikker {
+public class Knight extends GamePiece {
 
-    public Rider(int x,int y,boolean is_white)
+    public Knight(int x, int y, boolean is_white)
     {
         super(x,y,is_white);
     }
 
     @Override
-    public boolean canMove(int destination_x, int destination_y,Brikker[][] board) {
-        Brikker possiblePiece = board[destination_x][destination_y];
+    public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
+        GamePiece possiblePiece = board[destination_x][destination_y];
         System.out.println(this.getY());
         System.out.println(this.getX());
         if(possiblePiece !=null)

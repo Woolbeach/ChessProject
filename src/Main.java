@@ -12,7 +12,7 @@ public class Main {
         final int[] oldypos = new int[1];
         int square = 80;
 
-        GrafikPanel panel = new GrafikPanel(square, newGame.boardTracking);                          // opret panelet
+        Graphics panel = new Graphics(square, newGame.boardTracking);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
 
         JPanel mainPanel = new JPanel();

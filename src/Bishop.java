@@ -1,13 +1,13 @@
-public class Løber extends Brikker {
+public class Bishop extends GamePiece {
 
-    public Løber(int x,int y,boolean is_white)
+    public Bishop(int x, int y, boolean is_white)
     {
         super(x,y,is_white);
     }
 
     @Override
-    public boolean canMove(int destination_x, int destination_y, Brikker[][] board) {
-        Brikker possiblePiece =board[destination_x][destination_y];
+    public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
+        GamePiece possiblePiece =board[destination_x][destination_y];
         if(possiblePiece !=null)
         {
             if(possiblePiece.isWhite()&& this.isWhite())
@@ -56,7 +56,7 @@ public class Løber extends Brikker {
             int spaces_to_move=Math.abs(destination_y - this.getY());
             for(int i=1; i<spaces_to_move;i++)
             {
-                Brikker p=board[this.getX()+i][this.getY()-i];
+                GamePiece p=board[this.getX()+i][this.getY()-i];
                 if(p != null)
                 {
                     return false;
@@ -69,7 +69,7 @@ public class Løber extends Brikker {
             int spaces_to_move=Math.abs(destination_y - this.getY());
             for(int i=1; i<spaces_to_move;i++)
             {
-                Brikker p=board[this.getX()-i][this.getY()-i];
+                GamePiece p=board[this.getX()-i][this.getY()-i];
                 if(p != null)
                 {
                     return false;
@@ -82,7 +82,7 @@ public class Løber extends Brikker {
             int spaces_to_move=Math.abs(destination_x - this.getX());
             for(int i=1; i<spaces_to_move;i++)
             {
-                Brikker p=board[this.getX()-i][this.getY()+i];
+                GamePiece p=board[this.getX()-i][this.getY()+i];
                 if(p != null)
                 {
                     return false;
@@ -94,7 +94,7 @@ public class Løber extends Brikker {
             int spaces_to_move=Math.abs(destination_x - this.getX());
             for(int i=1; i<spaces_to_move;i++)
             {
-                Brikker p=board[this.getX()+i][this.getY()+i];
+                GamePiece p=board[this.getX()+i][this.getY()+i];
                 System.out.println(p);
                 if(p != null)
                 {
