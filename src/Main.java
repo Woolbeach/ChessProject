@@ -7,8 +7,6 @@ public class Main {
     public static void main(String[] args) {
         BoardLogic newGame = new BoardLogic();
 
-
-
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
@@ -61,10 +59,7 @@ public class Main {
                     g.drawRect(squarex * square, squarey * square, square, square);
                     g.setColor(selectedColor);
                     g.fillRect(squarex * square, squarey * square, square, square);
-
-                    //moves
                     g.setColor(movesColor);
-                    // Filip har flyttet switch casen ned i movepiece
                 }
             }
         });

@@ -5,6 +5,7 @@ public class BoardLogic {
     int[][] boardTracking = new int[8][8];
     Sounds sounds = new Sounds();
     boolean whitesTurn = true;
+    int numberOfTurns = 1;
 
     public BoardLogic(){
        LoadPieces(boardTracking, pieceLogic);
@@ -82,6 +83,7 @@ public class BoardLogic {
         if (brik.canMove(toy,tox,mitbræt2) == true) {
             movepieceonBoard(fromx,fromy,tox,toy,mitbræt,mitbræt2);
             whitesTurn = !whitesTurn;
+            numberOfTurns++;
         }
     }
     public void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board,Brikker[][] board2){
@@ -106,9 +108,6 @@ public class BoardLogic {
     }
     public Brikker getPieceLogic(int x, int y){
         return pieceLogic[x][y];
-    }
-    public Brikker getPiece(int x, int y,Brikker[][] board) {
-        return board[y][x];
     }
 
 }
