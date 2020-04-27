@@ -12,6 +12,7 @@ public class BoardLogic {
 
     public BoardLogic() {
         LoadPieces(boardTracking, pieceLogic);
+        //man dør ikke nu
         sounds.getBackgroundSound(70);
     }
 
