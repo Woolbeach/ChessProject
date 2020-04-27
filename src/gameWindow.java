@@ -4,13 +4,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Graphics extends JPanel {
+public class gameWindow extends JPanel {
     public int squareSize = 10;
     public int[][] board;
     public boolean selected;
     public int selx,sely;
 
-    public Graphics(int input, int[][] braet) {
+    public gameWindow(int input, int[][] braet) {
         board = braet;
         squareSize = input;
     }

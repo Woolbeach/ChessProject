@@ -7,13 +7,12 @@ public class Main {
     public static void main(String[] args) {
         BoardLogic newGame = new BoardLogic();
 
-
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
         int square = 80;
 
-        GrafikPanel panel = new GrafikPanel(square, newGame.boardTracking);                          // opret panelet
+        gameWindow panel = new gameWindow(square, newGame.boardTracking);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
 
         JPanel mainPanel = new JPanel();
