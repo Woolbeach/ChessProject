@@ -19,7 +19,7 @@ public class Main {
         JPanel mainPanel = new JPanel();
 
 
-
+        //en lille kommentar
 
         Dimension mySize = new Dimension();
         mySize.setSize(square * 8, square * 8);
