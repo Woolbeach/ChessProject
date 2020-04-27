@@ -3,9 +3,11 @@ import java.io.File;
 public class BoardLogic {
     Brikker[][] pieceLogic = new Brikker[8][8];
     int[][] boardTracking = new int[8][8];
+    Sounds sounds = new Sounds();
 
     public BoardLogic(){
        LoadPieces(boardTracking, pieceLogic);
+       sounds.getBackgroundSound();
     }
 
     public static void LoadPieces(int[][] board2,Brikker[][] board) {
@@ -62,7 +64,7 @@ public class BoardLogic {
         board2[7][4]=12;
         //bonde, tårn, konge, dronning, springer, hest
     }
-    public static void movepiece(int fromx, int fromy, int tox, int toy,int[][] mitbræt, Brikker[][] mitbræt2) {
+    public void movepiece(int fromx, int fromy, int tox, int toy,int[][] mitbræt, Brikker[][] mitbræt2) {
         Brikker brik = mitbræt2[fromy][fromx];
         System.out.println(brik);
         if(brik == null){
@@ -72,7 +74,7 @@ public class BoardLogic {
             movepieceonBoard(fromx,fromy,tox,toy,mitbræt,mitbræt2);
         }
     }
-    public static void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board,Brikker[][] board2){
+    public void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board,Brikker[][] board2){
         File attack = new File("ressources/BrickDamage.wav");
         File move = new File("ressources/MoveBrick.wav");
         int temp1 = board[fromy][fromx];
@@ -80,10 +82,10 @@ public class BoardLogic {
         board2[fromy][fromx]=null;
         board[fromy][fromx] = 0;
         if(board[toy][tox] >=1){
-            Main.sound(attack);
+            sounds.getAttackSound();
         }
         else{
-            Main.sound(move);
+            sounds.getMoveSound();
         }
         if(board[toy][tox] == 6 || board[toy][tox] == 12){
             System.exit(1);
@@ -95,5 +97,7 @@ public class BoardLogic {
     public Brikker getPieceLogic(int x, int y){
         return pieceLogic[x][y];
     }
-
+    public Brikker getPiece(int x, int y,Brikker[][] board) {
+        return board[y][x];
+    }
 }

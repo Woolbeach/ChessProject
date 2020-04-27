@@ -36,8 +36,8 @@ public class Main {
         vindue.pack();
         vindue.setVisible(true);                                                    // åbn vinduet
 
-        File music = new File("ressources/background.wav");
-        //sound(music);
+
+
 
         vindue.addMouseListener(new MouseAdapter() {
             @Override
@@ -76,20 +76,9 @@ public class Main {
         });
     }
 
-    public Brikker getPiece(int x, int y,Brikker[][] board) {
-        return board[y][x];
-    }
+
     //This method ensures that the game is able to play sounds, takes a .wav file as parameter.
-    public static void sound(File input) {
-        try {
-            Clip clip = AudioSystem.getClip();
-            //Loads in the designated sound input
-            clip.open(AudioSystem.getAudioInputStream(input));
-            //Starts the clip
-            clip.start();
-        } catch (Exception e) {
-        }
-    }
+
 
 }
 
