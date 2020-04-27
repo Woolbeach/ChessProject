@@ -9,7 +9,7 @@ public class BoardLogic {
 
     public BoardLogic(){
        LoadPieces(boardTracking, pieceLogic);
-       sounds.getBackgroundSound();
+       //sounds.getBackgroundSound();
     }
 
     public static void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
