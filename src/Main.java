@@ -8,25 +8,22 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        BoardLogic newGame = new BoardLogic();
+        BoardLogic boardLogic = new BoardLogic();
 
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
         int square = 80;
 
-        gameWindow panel = new gameWindow(square, newGame.boardTracking);                          // opret panelet
+        gameWindow panel = new gameWindow(square, boardLogic.boardTracking);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
 
         JPanel mainPanel = new JPanel();
 
 
-        //en lille kommentar
-
         Dimension mySize = new Dimension();
         mySize.setSize(square * 8, square * 8);
         panel.setPreferredSize(mySize);
-
 
         LayoutManager mitLay = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
@@ -35,12 +32,11 @@ public class Main {
 
         mainPanel.setLayout(mitLay);
         UI mitUI = new UI();
+        mitUI.boardLogic = boardLogic;
         mainPanel.add(mitUI.$$$getRootComponent$$$(), gbc);
 
         gbc.gridx = 0;
-
         mainPanel.add(panel, gbc);
-
 
         vindue.add(mainPanel);                                                      // vis panelet i vinduet
 
@@ -55,14 +51,14 @@ public class Main {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 clicks[0]++;
-                int xpos = e.getX() - 12;
+                int xpos = e.getX() - 5;
                 int ypos = e.getY() - 31;
 
                 System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
-                System.out.println("piece id:" + newGame.boardTracking[ypos / square][xpos / square]);
+                System.out.println("piece id:" + boardLogic.boardTracking[ypos / square][xpos / square]);
                 if (clicks[0] > 1) {
 
-                    newGame.movepiece(newGame.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, newGame.boardTracking, newGame.pieceLogic);
+                    boardLogic.movepiece(boardLogic.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, boardLogic.boardTracking, boardLogic.pieceLogic);
 
                     clicks[0] = 0;
                     vindue.repaint();

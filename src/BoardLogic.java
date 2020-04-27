@@ -1,8 +1,3 @@
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
-
 public class BoardLogic {
     GamePiece[][] pieceLogic = new GamePiece[8][8];
     int[][] boardTracking = new int[8][8];
@@ -13,7 +8,7 @@ public class BoardLogic {
     public BoardLogic() {
         LoadPieces(boardTracking, pieceLogic);
         //man dør ikke nu
-        sounds.getBackgroundSound(70);
+        sounds.playBackGround();
     }
 
     public static void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
@@ -40,7 +35,6 @@ public class BoardLogic {
         //black king and queen
         pieceArray[0][3] = new Queen(0, 3, false);
         pieceArray[0][4] = new King(0, 4, false);
-        ;
         boardArray[0][3] = 5;
         boardArray[0][4] = 6;
         //white pawns
@@ -96,9 +90,9 @@ public class BoardLogic {
         pieceArray[fromy][fromx] = null;
         boardArray[fromy][fromx] = 0;
         if (boardArray[toy][tox] >= 1) {
-            sounds.getAttackSound(80);
+            sounds.playAttackSound();
         } else {
-            sounds.getMoveSound(80);
+            sounds.playMoveSound();
         }
         if (boardArray[toy][tox] == 6 || boardArray[toy][tox] == 12) {
             System.exit(1);
