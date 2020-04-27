@@ -57,7 +57,6 @@ public class GrafikPanel extends JPanel {
         
         try {
             //load black pieces into buffered images
-
             blkpawn = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_pawn.png"));
             blkrook = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_rook.png"));
             blkknight = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_knight.png"));
@@ -139,8 +138,6 @@ public class GrafikPanel extends JPanel {
             }
         }
     }
-
-
 
     public static void selector(int xpos, int ypos){
 

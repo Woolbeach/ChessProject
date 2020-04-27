@@ -4,10 +4,12 @@ public class BoardLogic {
     Brikker[][] pieceLogic = new Brikker[8][8];
     int[][] boardTracking = new int[8][8];
     Sounds sounds = new Sounds();
+    boolean whitesTurn = true;
 
     public BoardLogic(){
        LoadPieces(boardTracking, pieceLogic);
        sounds.getBackgroundSound();
+
     }
 
     public static void LoadPieces(int[][] board2,Brikker[][] board) {
@@ -64,14 +66,22 @@ public class BoardLogic {
         board2[7][4]=12;
         //bonde, tårn, konge, dronning, springer, hest
     }
-    public void movepiece(int fromx, int fromy, int tox, int toy,int[][] mitbræt, Brikker[][] mitbræt2) {
+    public void movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy,int[][] mitbræt, Brikker[][] mitbræt2) {
         Brikker brik = mitbræt2[fromy][fromx];
-        System.out.println(brik);
-        if(brik == null){
+
+        if(brik == null) {
             return;
         }
+        if(whosturn == brik.isBlack()){
+            return;
+        }
+        else if(!whosturn == brik.isWhite()){
+            return;
+        }
+        System.out.println(brik);
         if (brik.canMove(toy,tox,mitbræt2) == true) {
             movepieceonBoard(fromx,fromy,tox,toy,mitbræt,mitbræt2);
+            whitesTurn = !whitesTurn;
         }
     }
     public void movepieceonBoard(int fromx,int fromy,int tox,int toy,int[][] board,Brikker[][] board2){
@@ -100,4 +110,5 @@ public class BoardLogic {
     public Brikker getPiece(int x, int y,Brikker[][] board) {
         return board[y][x];
     }
+
 }

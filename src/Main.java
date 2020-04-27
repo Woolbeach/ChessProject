@@ -1,21 +1,19 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.util.ArrayList;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
         BoardLogic newGame = new BoardLogic();
 
+
+
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
-
         int square = 80;
+
         GrafikPanel panel = new GrafikPanel(square, newGame.boardTracking);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
 
@@ -36,9 +34,6 @@ public class Main {
         vindue.pack();
         vindue.setVisible(true);                                                    // åbn vinduet
 
-
-
-
         vindue.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -47,11 +42,10 @@ public class Main {
                 int xpos = e.getX() - 12;
                 int ypos = e.getY() - 31;
 
-
                 System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
                 System.out.println("piece id:" + newGame.boardTracking[ypos/square][xpos/square]);
                 if (clicks[0] > 1) {
-                    newGame.movepiece(oldxpos[0], oldypos[0], xpos / square, ypos / square,newGame.boardTracking,newGame.pieceLogic);
+                    newGame.movepiece(newGame.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square,newGame.boardTracking,newGame.pieceLogic);
                     clicks[0] = 0;
                     vindue.repaint();
                 } else {
@@ -75,10 +69,5 @@ public class Main {
             }
         });
     }
-
-
-    //This method ensures that the game is able to play sounds, takes a .wav file as parameter.
-
-
 }
 

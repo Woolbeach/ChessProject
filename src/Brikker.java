@@ -1,5 +1,3 @@
-
-
 public class Brikker {
     private int x;
     private int y;

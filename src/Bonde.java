@@ -1,5 +1,3 @@
-import java.net.URL;
-
 public class Bonde extends Brikker {
     private boolean has_moved;
     public Bonde(int x,int y,boolean is_white) {
