@@ -18,6 +18,8 @@ public class Main {
         gameWindow panel = new gameWindow(square, boardLogic.boardTracking);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
 
+        boardLogic.fromMain = vindue;
+
         JPanel mainPanel = new JPanel();
 
 
@@ -62,6 +64,7 @@ public class Main {
 
                     clicks[0] = 0;
                     vindue.repaint();
+                    mitUI.upDate(boardLogic.whitesTurn,boardLogic.numberOfTurns);
                 } else {
                     oldxpos[0] = xpos / square;
                     oldypos[0] = ypos / square;

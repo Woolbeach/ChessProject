@@ -1,32 +1,32 @@
+import javax.swing.*;
+
 public class BoardLogic {
     GamePiece[][] pieceLogic = new GamePiece[8][8];
     int[][] boardTracking = new int[8][8];
     Sounds sounds = new Sounds();
     boolean whitesTurn = true;
-    int numberOfTurns = 1;
+    int numberOfTurns = 0;
+    JFrame fromMain;
 
     public BoardLogic() {
         LoadPieces(boardTracking, pieceLogic);
-        //man dør ikke nu
         sounds.playBackGround();
     }
 
-    //virker ikke efter hensigt, den sætter brikker på rigtige pladser men man kan ikke rykke på dem
-    public void newGame(){
+    public void newGame() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                boardTracking[i][j]=0;
-                pieceLogic[i][j] = new GamePiece(j,i,false);
+                boardTracking[i][j] = 0;
+                pieceLogic[i][j] = null;
             }
         }
         whitesTurn = true;
-        numberOfTurns = 1;
-        LoadPieces(boardTracking,pieceLogic);
+        numberOfTurns = 0;
+        LoadPieces(boardTracking, pieceLogic);
+        fromMain.repaint();
     }
 
     public void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
-
-
 
 
         //black pawns
