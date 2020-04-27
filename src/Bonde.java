@@ -1,70 +1,97 @@
-import java.net.URL;
-
 public class Bonde extends Brikker {
-
-    public Bonde()
-    {
-        super();
+    private boolean has_moved;
+    public Bonde(int x,int y,boolean is_white) {
+        super(x, y, is_white);
+        has_moved=false;
     }
 
-    public boolean canMove(int fromx,int fromy,int tox, int toy,int fromID, int toID,boolean harrykket,int[][] board)
-    {
-        // Grundregel 1. En brik må ikke ramme sin egen farve
-        if(fromID>0 && fromID<14 && toID>0 && toID<14){
-            return false;
-        }
-        if(fromID>13 && fromID<27 && toID>13 && toID<27){
-            return false;
-        }
-        // Hvis bonden ikke har rykket endnu så kan den rykke op til 2 skridt
-        // for en sort brik
-        if(harrykket==false){
-            if(fromID>0 && fromID<14 && tox==fromx && toy-fromy==2){
-                int spaces_to_move=2;
-                for(int i=1; i<spaces_to_move;i++)
-                {
-                    if(board[fromy+i][fromx]>0)
-                    {
-                        return false;
-                    }
-                }
-                return true;
+    @Override
+    public boolean canMove(int destination_x, int destination_y, Brikker[][] board) {
+        Brikker possiblePiece = board[destination_x][destination_y];
+        System.out.println("x:"+destination_x);
+        System.out.println("y:"+destination_y);
+        // dette er hvad gør at den ikke kan ramme sin egen farve
+
+        if(possiblePiece !=null)
+        {
+            if(possiblePiece.isWhite()&& this.isWhite())
+            {
+                return false;
+            }
+            if(possiblePiece.isBlack()&& this.isBlack())
+            {
+                return false;
             }
         }
-        // for en hvid brik
-        if(harrykket==false){
-            if(fromID>13 && fromID<30 && tox==fromx && Math.abs(fromy-toy)==2){
-                System.out.println("Det er sket");
-                int spaces_to_move=2;
-                for(int i=1; i<spaces_to_move;i++)
+        // dette lange check er for det første hop, siden en bonde må gå 2 frem
+        if(has_moved==false && this.isWhite() && this.getX()==6 && (Math.abs(destination_x - this.getX())==2))
+        {
+            int spaces_to_move=Math.abs(destination_x - this.getX());
+            for(int i=1; i<spaces_to_move;i++)
+            {
+                Brikker p=board[destination_x][destination_y];
+                if(p != null)
                 {
-                    System.out.println(board[fromy-i][fromx]);
-                    if(board[fromy-i][fromx]>0)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-                return true;
+            }
+            has_moved=true;
+            this.setX(destination_x);
+            this.setY(destination_y);
+            return true;
+        }
+        if(has_moved==false && this.isBlack() && this.getX()==1&&(Math.abs(destination_x - this.getX())==2))
+        {
+            int spaces_to_move=Math.abs(destination_x - this.getX());
+            for(int i=1; i<spaces_to_move;i++)
+            {
+                Brikker p=board[destination_x][destination_y];
+                if(p != null)
+                {
+                    return false;
+                }
+            }
+            has_moved=true;
+            this.setX(destination_x);
+            this.setY(destination_y);
+            return true;
+        }
+        // sørger for at alt andet end 1 gang op, venstre og højre er tilladt og lige omvendt for sort
+        if (this.isWhite())
+        {
+            if (this.getX()!=destination_x+1 && (this.getY()!=destination_y+1 || this.getY()!=destination_y-1 || this.getY()!=destination_y)) {
+                return false;
             }
         }
-        // Bonden må gerne rykke en ned eller op
-        if(board[toy][tox]==0 && fromID>0 && fromID<14 && fromx-tox==0 && toy-fromy==1){
-            return true;
+        if (this.isBlack())
+        {
+            if (this.getX()!=destination_x-1 && (this.getY()!=destination_y+1 || this.getY()!=destination_y-1 || this.getY()!=destination_y)) {
+                return false;
+            }
         }
-        if(board[toy][tox]==0 && fromID>13 && fromID<30 && fromx-tox==0 && fromy-toy==1){
-            return true;
-        }
-        // hvis der står en brik fra modstanderen ved koordinat x+1,y+1 så må bonden gerne gå derhen
-        if(fromID>0 && fromID<14 && Math.abs(fromx-tox)==1 && toy-fromy==1 && board[toy][tox]>13){
-            return true;
-        }
-        if(fromID>13 && fromID<30 && Math.abs(fromx-tox)==1 && fromy-toy==1 && board[toy][tox]>0 && board[toy][tox]<30){
-            return true;
-        }
-        // hvis de andre specielle kriterier ikke er opfyldt så må bonden kun rykke en op eller ned
-        if(Math.abs(fromy-tox)>1 || Math.abs(fromx-tox)>0){
+        if (this.getY()-destination_y>1 || this.getY()-destination_y<-1)
+        {
             return false;
         }
+        System.out.println("det er sket3");
+        // sørger for at den ikke kan ødelægge en brik foran den og den ikke kan gå til højre op eller venstre op
+        // uden der er en brik fra modstanderens side der
+        if (possiblePiece==null && this.isWhite() && (destination_y+1==this.getY() || destination_y-1==this.getY())){
+            return false;
+        }
+        if(possiblePiece!=null && destination_x+1==this.getX() && possiblePiece.isBlack() && destination_y==this.getY()){
+            return false;
+        }
+        if (possiblePiece==null && this.isBlack() && (destination_y+1==this.getY() || destination_y-1==this.getY())){
+            return false;
+        }
+        if(possiblePiece!=null && destination_x-1==this.getX() && possiblePiece.isWhite()&& destination_y==this.getY()){
+            return false;
+        }
+        this.setX(destination_x);
+        this.setY(destination_y);
         return true;
+
+
     }
 }

@@ -1,14 +1,13 @@
 
 public class Dronning extends Brikker {
 
-    public Dronning()
+    public Dronning(int x,int y,boolean is_white)
     {
-        super();
+        super(x,y,is_white);
     }
 
     @Override
-    public boolean canMove(int fromx,int fromy,int tox, int toy,int fromID, int toID)
-    {
-        return true;
+    public boolean canMove(int destination_x, int destination_y, Brikker[][] board) {
+        return super.canMove(destination_x, destination_y, board);
     }
 }

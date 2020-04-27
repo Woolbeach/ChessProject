@@ -1,63 +1,77 @@
 
 public class Tårn extends Brikker {
 
-    public Tårn()
+    public Tårn(int x,int y,boolean is_white)
     {
-        super();
+        super(x,y,is_white);
     }
 
-
-    public boolean canMove(int fromx,int fromy,int tox, int toy,int fromID, int toID,int[][] board)
-    {
-        // Grundregel 1. En brik må ikke ramme sin egen farve
-        System.out.println(fromID+"   "+toID);
-        if((fromID>0 && fromID<14) && (toID>0 && toID<14)){
+    @Override
+    public boolean canMove(int destination_x, int destination_y, Brikker[][] board) {
+        Brikker possiblePiece = board[destination_x][destination_y];
+        // gør at den ikke kan bevæge sig hen over en af dens egen farve
+        System.out.println(this.getX());
+        System.out.println(this.getY());
+        System.out.println(destination_x);
+        System.out.println(destination_y);
+        if(possiblePiece !=null)
+        {
+            if(possiblePiece.isWhite()&& this.isWhite())
+            {
+                return false;
+            }
+            if(possiblePiece.isBlack()&& this.isBlack())
+            {
+                return false;
+            }
+        }
+        // dette er til så den ikke kan bevæge sig andet end op/ned og venstre/højre
+        if (this.getX() !=destination_x && this.getY() != destination_y)
+        {
             return false;
         }
-        if((fromID>13 && fromID<27) && (toID>13 && toID<27)){
-            return false;
-        }
-        // tårnet må kun gå op,ned,venstre og højre
-        if(fromx!=tox && fromy!=toy){
-            return false;
-        }
-        // finder ud af hvilken vej tårnet gerne vil gå hen
-
+        // dette er til så den ikke kan springe over en anden blok
         String direction="";
-        if(toy>fromy)
+        if(destination_x> this.getX())
         {
             direction="south";
         }
-        if(toy< fromy)
+        if(destination_x< this.getX())
         {
             direction="north";
         }
-        if(tox> fromx)
+        if(destination_y> this.getY())
         {
             direction="east";
         }
-        if(tox<fromx)
+        if(destination_y< this.getY())
         {
             direction="west";
         }
+        System.out.println(direction);
         if(direction.equals("south"))
         {
-            int spaces_to_move=Math.abs(toy-fromy);
+            int spaces_to_move=Math.abs(destination_x - this.getX());
             for(int i=1; i<spaces_to_move;i++)
             {
-                if(board[fromy+i][fromx]>0)
+                System.out.println("det er sket");
+                Brikker p=board[this.getX()+i][this.getY()];
+                System.out.println(p);
+                if(p != null)
                 {
                     return false;
                 }
             }
         }
-
         if(direction.equals("north"))
         {
-            int spaces_to_move=Math.abs(toy- fromy);
+            int spaces_to_move=Math.abs(destination_x - this.getX());
+            System.out.println(spaces_to_move);
             for(int i=1; i<spaces_to_move;i++)
             {
-                if(board[fromy-i][fromx]>0)
+                Brikker p=board[this.getX()-i][this.getY()];
+                System.out.println(p);
+                if(p != null)
                 {
                     return false;
                 }
@@ -65,16 +79,31 @@ public class Tårn extends Brikker {
         }
         if(direction.equals("east"))
         {
-            int spaces_to_move=Math.abs(toy- fromy);
-            for(int i=0; i<=spaces_to_move;i++)
+            int spaces_to_move=Math.abs(destination_y - this.getY());
+            for(int i=1; i<spaces_to_move;i++)
             {
-                System.out.println(board[toy][tox-i]);
-                if(board[toy][tox-i]>0)
+                Brikker p=board[this.getX()][this.getY()+i];;
+                System.out.println(p);
+                if(p != null)
                 {
                     return false;
                 }
             }
         }
+        if(direction.equals("west"))
+        {
+            int spaces_to_move=Math.abs(destination_y - this.getY());
+            for(int i=1; i<spaces_to_move;i++)
+            {
+                Brikker p=board[this.getX()][this.getY()-i];
+                if(p != null)
+                {
+                    return false;
+                }
+            }
+        }
+        this.setX(destination_x);
+        this.setY(destination_y);
         return true;
     }
 }

@@ -1,23 +1,34 @@
 
 public class Rider extends Brikker {
 
-    public Rider()
+    public Rider(int x,int y,boolean is_white)
     {
-        super();
+        super(x,y,is_white);
     }
 
     @Override
-    public boolean canMove(int fromx,int fromy,int tox, int toy,int fromID, int toID)
-    {
-        // Grundregel 1. En brik må ikke ramme sin egen farve
-        System.out.println(fromID+"   "+toID);
-        if((fromID>0 && fromID<14) && (toID>0 && toID<14)){
-            return false;
+    public boolean canMove(int destination_x, int destination_y,Brikker[][] board) {
+        Brikker possiblePiece = board[destination_x][destination_y];
+        System.out.println(this.getY());
+        System.out.println(this.getX());
+        if(possiblePiece !=null)
+        {
+            if(possiblePiece.isWhite()&& this.isWhite())
+            {
+                return false;
+            }
+            if(possiblePiece.isBlack()&& this.isBlack())
+            {
+                return false;
+            }
         }
-        if((fromID>13 && fromID<27) && (toID>13 && toID<27)){
-            return false;
+        // siden en springer må gå igennem så skal man bare sørge for at den kun må
+        // have en x forskel på 1 eller 3 og en y forksle på 1 eller 3
+        if(Math.abs(this.getX() - destination_x) == 2 && Math.abs(this.getY() - destination_y) == 1 || Math.abs(this.getX() - destination_x) == 1 && Math.abs(this.getY() - destination_y) == 2){
+            this.setX(destination_x);
+            this.setY(destination_y);
+            return true;
         }
-
-        return ((Math.abs(fromx-tox)==2 && Math.abs(fromy-toy)==1) || (Math.abs(fromx-tox)==1 && Math.abs(fromy-toy)==2));
+        return false;
     }
 }
