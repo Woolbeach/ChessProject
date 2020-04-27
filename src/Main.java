@@ -1,10 +1,13 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         BoardLogic newGame = new BoardLogic();
 
         final int[] clicks = {0};
@@ -27,16 +30,16 @@ public class Main {
 
         LayoutManager mitLay = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = mainPanel.getComponentCount()+2;
+        gbc.gridx = mainPanel.getComponentCount() + 2;
         gbc.gridy = 0;
 
         mainPanel.setLayout(mitLay);
         UI mitUI = new UI();
-        mainPanel.add(mitUI.$$$getRootComponent$$$(),gbc);
+        mainPanel.add(mitUI.$$$getRootComponent$$$(), gbc);
 
         gbc.gridx = 0;
 
-        mainPanel.add(panel,gbc);
+        mainPanel.add(panel, gbc);
 
 
         vindue.add(mainPanel);                                                      // vis panelet i vinduet
@@ -58,7 +61,9 @@ public class Main {
                 System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
                 System.out.println("piece id:" + newGame.boardTracking[ypos / square][xpos / square]);
                 if (clicks[0] > 1) {
+
                     newGame.movepiece(newGame.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, newGame.boardTracking, newGame.pieceLogic);
+
                     clicks[0] = 0;
                     vindue.repaint();
                 } else {
