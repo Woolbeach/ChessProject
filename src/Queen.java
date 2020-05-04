@@ -171,8 +171,6 @@ public class Queen extends GamePiece {
                 }
             }
         }
-        this.setX(destination_x);
-        this.setY(destination_y);
         return true;
     }
 }

@@ -20,8 +20,6 @@ public class King extends GamePiece {
         if (Math.abs(this.getX() - destination_x) > 1 || Math.abs(this.getY() - destination_y) > 1) {
             return false;
         }
-        this.setX(destination_x);
-        this.setY(destination_y);
         return true;
     }
 }

@@ -38,6 +38,11 @@ public class GamePiece {
     {
         return y;
     }
+
+    public void update(int destination_x,int destination_y){
+        this.setX(destination_x);
+        this.setY(destination_y);
+    }
 }
 
 

@@ -84,16 +84,19 @@ public class Main {
                     g.setColor(movesColor);
                     // Filip: made all possible moves green
                     GamePiece possiblePiece = boardLogic.pieceLogic[oldypos[0]][oldxpos[0]];
+                    System.out.println(oldxpos[0]);
+                    System.out.println(oldypos[0]);
                     System.out.println("Tid 7 nu: "+(System.currentTimeMillis()-start));
                     if(possiblePiece!=null){
                         for(int i=0;i<8;i++){
                             for(int j=0;j<8;j++){
                                 {
+                                    if(possiblePiece.canMove(j,i,boardLogic.pieceLogic)) {
+                                        g.setColor(Color.GREEN);
+                                        g.drawRect(i * square, j * square, square, square);
+                                        g.fillRect(i * square, j * square, square, square);
 
-                                    g.setColor(Color.GREEN);
-                                    g.drawRect(i * square, j * square, square, square);
-                                    g.setColor(selectedColor);
-                                    g.fillRect(i * square, j * square, square, square);
+                                    }
                                 }
                             }
                         }

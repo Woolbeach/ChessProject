@@ -96,6 +96,7 @@ public class BoardLogic {
         System.out.println(currentPiece);
         if (currentPiece.canMove(toy, tox, pieceArray) == true) {
             movepieceonBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
+            currentPiece.update(toy,tox);
             whitesTurn = !whitesTurn;
             numberOfTurns++;
         }

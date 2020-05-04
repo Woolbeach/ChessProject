@@ -1,16 +1,14 @@
 public class Pawn extends GamePiece {
-    private boolean has_moved;
     int initialMove = 2;
     public Pawn(int x, int y, boolean is_white) {
         super(x, y, is_white);
-        has_moved = false;
     }
 
     @Override
     public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
         GamePiece possiblePiece = board[destination_x][destination_y];
-        System.out.println("x: "+destination_x);
-        System.out.println("y: "+destination_y);
+        //System.out.println("x: "+destination_x);
+        //System.out.println("y: "+destination_y);
 
         //Rule #1
         //Cannot attack own pieces
@@ -30,7 +28,7 @@ public class Pawn extends GamePiece {
         //Pawns may move two fields from their starting position
 
         //White
-        if(has_moved==false && this.isWhite() && this.getX() == 6 && (Math.abs(destination_x - this.getX()) == initialMove && destination_y == this.getY()))
+        if(this.isWhite() && this.getX() == 6 && (Math.abs(destination_x - this.getX()) == initialMove && destination_y == this.getY()))
         {
             for(int i=1; i < initialMove; i++)
             {
@@ -40,14 +38,12 @@ public class Pawn extends GamePiece {
                     return false;
                 }
             }
-            has_moved=true;
-            this.setX(destination_x);
-            this.setY(destination_y);
+            //has_moved=true;
             return true;
         }
 
         //Black
-        if(has_moved==false && this.isBlack() && this.getX()==1 && (Math.abs(destination_x - this.getX()) == initialMove && destination_y == this.getY()))
+        if(this.isBlack() && this.getX()==1 && (Math.abs(destination_x - this.getX()) == initialMove && destination_y == this.getY()))
         {
             for(int i=1; i < initialMove;i++)
             {
@@ -57,9 +53,7 @@ public class Pawn extends GamePiece {
                     return false;
                 }
             }
-            has_moved=true;
-            this.setX(destination_x);
-            this.setY(destination_y);
+            //has_moved=true;
             return true;
         }
 
@@ -94,10 +88,6 @@ public class Pawn extends GamePiece {
         if(possiblePiece!=null && destination_x-1==this.getX() && possiblePiece.isWhite()&& destination_y==this.getY()){
             return false;
         }
-
-        //Updates position of the pawn piece
-        this.setX(destination_x);
-        this.setY(destination_y);
         return true;
     }
 }
