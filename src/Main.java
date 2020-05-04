@@ -78,10 +78,23 @@ public class Main {
                     g.drawRect(squarex * square, squarey * square, square, square);
                     g.setColor(selectedColor);
                     g.fillRect(squarex * square, squarey * square, square, square);
-
                     //moves
                     g.setColor(movesColor);
-                    // Filip har flyttet switch casen ned i movepiece
+                    // Filip: made all possible moves green
+                    GamePiece possiblePiece = boardLogic.pieceLogic[oldypos[0]][oldxpos[0]];
+                    if(possiblePiece!=null){
+                        for(int i=0;i<8;i++){
+                            for(int j=0;j<8;j++){
+                                {
+
+                                    g.setColor(Color.GREEN);
+                                    g.drawRect(i * square, j * square, square, square);
+                                    g.setColor(selectedColor);
+                                    g.fillRect(i * square, j * square, square, square);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         });

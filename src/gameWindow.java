@@ -56,6 +56,7 @@ public class gameWindow extends JPanel {
         BufferedImage whtking = null;
         
         try {
+            System.out.println("Billedlæses forfra");
             //load black pieces into buffered images
             blkpawn = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_pawn.png"));
             blkrook = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_rook.png"));

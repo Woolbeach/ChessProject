@@ -2,7 +2,6 @@ import javax.swing.*;
 
 public class BoardLogic {
     GamePiece[][] pieceLogic = new GamePiece[8][8];
-    int[][][] MemoryBoard = new int[269][8][8];
     int[][] boardTracking = new int[8][8];
     Sounds sounds = new Sounds();
     boolean whitesTurn = true;
@@ -123,7 +122,6 @@ public class BoardLogic {
     public GamePiece getPieceLogic(int x, int y) {
         return pieceLogic[x][y];
     }
-    public void Undo(int Memoryboard[][][],int boardTracking[][],int numberOfTurns){
-    }
+
 
 }
