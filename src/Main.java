@@ -52,6 +52,7 @@ public class Main {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                long start = System.currentTimeMillis();
                 clicks[0]++;
                 int xpos = e.getX() - 5;
                 int ypos = e.getY() - 31;
@@ -73,6 +74,7 @@ public class Main {
                     Color selectedColor = new Color(18, 50, 150, 127);
                     Color movesColor = new Color(188, 10, 40, 100);
                     //draw selected square
+                    System.out.println("Tid 5 nu: "+(System.currentTimeMillis()-start));
                     Graphics g = mainPanel.getGraphics();
                     g.setColor(Color.blue);
                     g.drawRect(squarex * square, squarey * square, square, square);
@@ -82,6 +84,7 @@ public class Main {
                     g.setColor(movesColor);
                     // Filip: made all possible moves green
                     GamePiece possiblePiece = boardLogic.pieceLogic[oldypos[0]][oldxpos[0]];
+                    System.out.println("Tid 7 nu: "+(System.currentTimeMillis()-start));
                     if(possiblePiece!=null){
                         for(int i=0;i<8;i++){
                             for(int j=0;j<8;j++){
@@ -95,6 +98,8 @@ public class Main {
                             }
                         }
                     }
+                    System.out.println("Tid 9  nu: "+(System.currentTimeMillis()-start));
+
                 }
             }
         });
