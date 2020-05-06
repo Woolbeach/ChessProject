@@ -73,6 +73,7 @@ public class Main {
                     int squarey = ypos / square;
                     Color selectedColor = new Color(18, 50, 150, 127);
                     Color movesColor = new Color(188, 10, 40, 100);
+                    Color possibleMoves = new Color(0,150,0,100);
                     //draw selected square
                     System.out.println("Tid 5 nu: "+(System.currentTimeMillis()-start));
                     Graphics g = mainPanel.getGraphics();
@@ -92,10 +93,9 @@ public class Main {
                             for(int j=0;j<8;j++){
                                 {
                                     if(possiblePiece.canMove(j,i,boardLogic.pieceLogic)) {
-                                        g.setColor(Color.GREEN);
+                                        g.setColor(possibleMoves);
                                         g.drawRect(i * square, j * square, square, square);
                                         g.fillRect(i * square, j * square, square, square);
-
                                     }
                                 }
                             }

@@ -9,10 +9,44 @@ public class gameWindow extends JPanel {
     public int[][] board;
     public boolean selected;
     public int selx,sely;
+    BufferedImage blkpawn = null;
+    BufferedImage blkrook = null;
+    BufferedImage blkknight = null;
+    BufferedImage blkbishop = null;
+    BufferedImage blkqueen = null;
+    BufferedImage blkking = null;
+
+    BufferedImage whtpawn = null;
+    BufferedImage whtrook = null;
+    BufferedImage whtknight = null;
+    BufferedImage whtbishop = null;
+    BufferedImage whtqueen = null;
+    BufferedImage whtking = null;
 
     public gameWindow(int input, int[][] braet) {
         board = braet;
         squareSize = input;
+        try {
+            System.out.println("Billedlæses forfra");
+            //load black pieces into buffered images
+            blkpawn = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_pawn.png"));
+            blkrook = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_rook.png"));
+            blkknight = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_knight.png"));
+            blkbishop = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_bishop.png"));
+            blkqueen = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_queen.png"));
+            blkking = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_king.png"));
+
+            //load white pieces into buffered images
+            whtpawn = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_pawn.png"));
+            whtrook = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_rook.png"));
+            whtknight = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_knight.png"));
+            whtbishop = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_bishop.png"));
+            whtqueen = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_queen.png"));
+            whtking = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_king.png"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void paintComponent(java.awt.Graphics g) {
@@ -41,41 +75,6 @@ public class gameWindow extends JPanel {
 
         }
 
-        BufferedImage blkpawn = null;
-        BufferedImage blkrook = null;
-        BufferedImage blkknight = null;
-        BufferedImage blkbishop = null;
-        BufferedImage blkqueen = null;
-        BufferedImage blkking = null;
-
-        BufferedImage whtpawn = null;
-        BufferedImage whtrook = null;
-        BufferedImage whtknight = null;
-        BufferedImage whtbishop = null;
-        BufferedImage whtqueen = null;
-        BufferedImage whtking = null;
-        
-        try {
-            System.out.println("Billedlæses forfra");
-            //load black pieces into buffered images
-            blkpawn = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_pawn.png"));
-            blkrook = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_rook.png"));
-            blkknight = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_knight.png"));
-            blkbishop = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_bishop.png"));
-            blkqueen = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_queen.png"));
-            blkking = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_king.png"));
-
-            //load white pieces into buffered images
-            whtpawn = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_pawn.png"));
-            whtrook = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_rook.png"));
-            whtknight = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_knight.png"));
-            whtbishop = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_bishop.png"));
-            whtqueen = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_queen.png"));
-            whtking = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_king.png"));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 //testdada
         for (int xaxis = 0; xaxis < 8; xaxis++) {
             for (int yaxis = 0; yaxis < 8; yaxis++) {
