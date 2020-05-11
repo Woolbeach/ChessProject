@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class BoardLogic {
     Filehandler filehandler = new Filehandler(this);
@@ -122,7 +123,13 @@ public class BoardLogic {
             sounds.playMoveSound();
         }
         if (boardArray[toy][tox] == 6 || boardArray[toy][tox] == 12) {
-            System.exit(1);
+            if(whitesTurn){
+                System.out.println("Sort Vinder");
+            }
+            else{
+                System.out.println("Hvid vinder");
+            }
+
         }
         boardArray[toy][tox] = temp1;
         pieceArray[toy][tox] = currentPiece;
