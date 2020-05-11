@@ -1,4 +1,3 @@
-
 public class Queen extends GamePiece {
 
     public Queen(int x, int y, boolean is_white)

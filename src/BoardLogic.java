@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 public class BoardLogic {
+    Filehandler filehandler = new Filehandler(this);
     GamePiece[][] pieceLogic = new GamePiece[8][8];
     int[][] boardTracking = new int[8][8];
     Sounds sounds = new Sounds();
@@ -127,7 +128,7 @@ public class BoardLogic {
         pieceArray[toy][tox] = currentPiece;
 
     }
-    public void Undo(int[] undoFromX,int[] undoFromY,int[] undoToX,int[] undoToY, int[][] boardArray, GamePiece[][] pieceArray){
+    public void Undo(int[][] boardArray, GamePiece[][] pieceArray){
         if(numberOfTurns<=0){
             return;
         }
@@ -148,7 +149,5 @@ public class BoardLogic {
     public GamePiece getPieceLogic(int x, int y) {
         return pieceLogic[x][y];
     }
-
-
 
 }

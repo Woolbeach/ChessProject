@@ -87,49 +87,50 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Undo was pressed");
-                boardLogic.Undo(boardLogic.undoFromX, boardLogic.undoFromY, boardLogic.undoToX, boardLogic.undoToY, boardLogic.boardTracking, boardLogic.pieceLogic);
+                boardLogic.Undo(boardLogic.boardTracking, boardLogic.pieceLogic);
                 upDate(boardLogic.whitesTurn, boardLogic.numberOfTurns);
             }
         });
-        saveGameToLogfileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Save game button pressed");
-            }
-        });
+
         save1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boardLogic.filehandler.saveGame(1, boardLogic.numberOfTurns);
                 System.out.println("save1");
             }
         });
         loadSave1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boardLogic.filehandler.loadGame(1);
                 System.out.println("load save 1");
             }
         });
         save2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boardLogic.filehandler.saveGame(2, boardLogic.numberOfTurns);
                 System.out.println("save2");
             }
         });
         loadSave2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boardLogic.filehandler.loadGame(2);
                 System.out.println("load save 2");
             }
         });
         save3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boardLogic.filehandler.saveGame(3, boardLogic.numberOfTurns);
                 System.out.println("save3");
             }
         });
         loadSave3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boardLogic.filehandler.loadGame(3);
                 System.out.println("load save 3");
             }
         });
@@ -207,7 +208,7 @@ public class UI {
         final JPanel spacer2 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 16;
+        gbc.gridy = 15;
         gbc.fill = GridBagConstraints.VERTICAL;
         UI_Panel.add(spacer2, gbc);
         musicSlider = new JSlider();
@@ -309,27 +310,20 @@ public class UI {
         gbc.gridy = 14;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         UI_Panel.add(undo1MoveButton, gbc);
-        saveGameToLogfileButton = new JButton();
-        saveGameToLogfileButton.setText("Save Game To Logfile");
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 15;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        UI_Panel.add(saveGameToLogfileButton, gbc);
         final JLabel label6 = new JLabel();
         Font label6Font = this.$$$getFont$$$("Arial Black", Font.BOLD, 16, label6.getFont());
         if (label6Font != null) label6.setFont(label6Font);
         label6.setText("Game Saves");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 17;
+        gbc.gridy = 16;
         gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(label6, gbc);
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 18;
+        gbc.gridy = 17;
         gbc.fill = GridBagConstraints.BOTH;
         UI_Panel.add(panel1, gbc);
         save1Button = new JButton();
@@ -342,7 +336,7 @@ public class UI {
         panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 19;
+        gbc.gridy = 18;
         gbc.fill = GridBagConstraints.BOTH;
         UI_Panel.add(panel2, gbc);
         save2Button = new JButton();
@@ -355,7 +349,7 @@ public class UI {
         panel3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 20;
+        gbc.gridy = 19;
         gbc.fill = GridBagConstraints.BOTH;
         UI_Panel.add(panel3, gbc);
         save3Button = new JButton();
