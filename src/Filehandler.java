@@ -8,7 +8,6 @@ public class Filehandler {
     }
 
     public void saveGame(int x, int numberOfTurns) {
-        numberOfTurns =
         try {
             FileWriter file = new FileWriter("save" + x);
             PrintWriter out = new PrintWriter(file);
@@ -64,7 +63,7 @@ public class Filehandler {
             currentPiece.update(logicClass.undoToY[j], logicClass.undoToX[j]);
             logicClass.whitesTurn = !logicClass.whitesTurn;
         }
-        logicClass.numberOfTurns = tempNumberOfTurns;
+        logicClass.numberOfTurns = tempNumberOfTurns+1;
 
     }
 
