@@ -68,6 +68,7 @@ public class Sounds {
 
     public void playWin() {
         System.out.println("Played win");
+        Background.stop();
         Win.setMicrosecondPosition(0);
         try {
             Thread.sleep(500);
@@ -82,6 +83,7 @@ public class Sounds {
     public void playBackGround() {
         Background.setMicrosecondPosition(0);
         Background.start();
+        Background.loop(15);
     }
 
     public void setMusicvolume(int value) {
