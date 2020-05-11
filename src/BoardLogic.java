@@ -128,6 +128,9 @@ public class BoardLogic {
 
     }
     public void Undo(int[] undoFromX,int[] undoFromY,int[] undoToX,int[] undoToY, int[][] boardArray, GamePiece[][] pieceArray){
+        if(numberOfTurns<=0){
+            return;
+        }
         int tempNumberOfTurns=numberOfTurns;
         newGame();
         for(int i=0;i<tempNumberOfTurns-1;i++) {
