@@ -8,6 +8,11 @@ public class BoardLogic {
     int numberOfTurns = 0;
     JFrame fromMain;
 
+    int[] undoFromX = new int[269];
+    int[] undoFromY = new int[269];
+    int[] undoToX = new int[269];
+    int[] undoToY = new int[269];
+
     public BoardLogic() {
         LoadPieces(boardTracking, pieceLogic);
         sounds.playBackGround();
@@ -84,7 +89,6 @@ public class BoardLogic {
 
     public void movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
         GamePiece currentPiece = pieceArray[fromy][fromx];
-
         if (currentPiece == null) {
             return;
         }
@@ -95,6 +99,10 @@ public class BoardLogic {
         }
         System.out.println(currentPiece);
         if (currentPiece.canMove(toy, tox, pieceArray) == true) {
+            undoFromX[numberOfTurns]=fromx;
+            undoFromY[numberOfTurns]=fromy;
+            undoToX[numberOfTurns]=tox;
+            undoToY[numberOfTurns]=toy;
             movepieceonBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
             currentPiece.update(toy,tox);
             whitesTurn = !whitesTurn;
@@ -119,10 +127,26 @@ public class BoardLogic {
         pieceArray[toy][tox] = currentPiece;
 
     }
-
+    public void Undo(int[] undoFromX,int[] undoFromY,int[] undoToX,int[] undoToY, int[][] boardArray, GamePiece[][] pieceArray){
+        System.out.println("undo");
+        int tempNumberOfTurns=numberOfTurns;
+        newGame();
+        for(int i=0;i<tempNumberOfTurns-1;i++) {
+            int temp1 = boardArray[undoFromY[i]][undoFromX[i]];
+            GamePiece currentPiece = pieceArray[undoFromY[i]][undoFromX[i]];
+            pieceArray[undoFromY[i]][undoFromX[i]] = null;
+            boardArray[undoFromY[i]][undoFromX[i]] = 0;
+            boardArray[undoToY[i]][undoToX[i]] = temp1;
+            pieceArray[undoToY[i]][undoToX[i]] = currentPiece;
+            currentPiece.update(undoToY[i],undoToX[i]);
+        }
+        numberOfTurns=tempNumberOfTurns-1;
+        System.out.println("Undo done");
+    }
     public GamePiece getPieceLogic(int x, int y) {
         return pieceLogic[x][y];
     }
+
 
 
 }
