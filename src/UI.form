@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UI">
   <grid id="27dc6" binding="UI_Panel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="500" height="470"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -144,6 +144,82 @@
           <text value="Undo 1 Move"/>
         </properties>
       </component>
+      <component id="ca209" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Arial Black" size="16" style="1"/>
+          <text value="Game Saves"/>
+        </properties>
+      </component>
+      <grid id="d6321" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="72f89" class="javax.swing.JButton" binding="save1Button" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Save 1"/>
+            </properties>
+          </component>
+          <component id="c12ec" class="javax.swing.JButton" binding="loadSave1Button" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Load Save 1"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="1d03d" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="9db1e" class="javax.swing.JButton" binding="save2Button" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Save 2"/>
+            </properties>
+          </component>
+          <component id="d75a8" class="javax.swing.JButton" binding="loadSave2Button" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Load Save 2"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c09e7" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="19" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="a26f1" class="javax.swing.JButton" binding="save3Button" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Save 3"/>
+            </properties>
+          </component>
+          <component id="c87d3" class="javax.swing.JButton" binding="loadSave3Button" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Load Save 3"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
