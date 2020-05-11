@@ -1,6 +1,5 @@
 import java.io.*;
 
-
 public class Filehandler {
     BoardLogic logicClass;
 
@@ -21,15 +20,21 @@ public class Filehandler {
             e.printStackTrace();
         }
 
+
     }
 
     public void loadGame(int x) {
         int i = 0;
+        for (int j = 0; j < logicClass.numberOfTurns; j++) {
+            logicClass.undoFromX[i] = 0;
+            logicClass.undoFromY[i] = 0;
+            logicClass.undoToX[i] = 0;
+            logicClass.undoToY[i] = 0;
+        }
         try {
             FileReader file = new FileReader("save" + x);
             BufferedReader in = new BufferedReader(file);
             String currentLine = in.readLine();
-
             while (currentLine != null) {
                 String[] data = currentLine.split(",");
                 logicClass.undoFromX[i] = Integer.valueOf(data[0]);
@@ -39,13 +44,14 @@ public class Filehandler {
                 i++;
                 currentLine = in.readLine();
             }
-
+            in.close();
+            file.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        int tempNumberOfTurns = i;
+        int tempNumberOfTurns = i-1;
         logicClass.newGame();
         for (int j = 0; j <= tempNumberOfTurns; j++) {
             int temp1 = logicClass.boardTracking[logicClass.undoFromY[j]][logicClass.undoFromX[j]];
@@ -57,10 +63,8 @@ public class Filehandler {
             currentPiece.update(logicClass.undoToY[j], logicClass.undoToX[j]);
             logicClass.whitesTurn = !logicClass.whitesTurn;
         }
-        logicClass.numberOfTurns = tempNumberOfTurns;
-
+        logicClass.numberOfTurns = tempNumberOfTurns+1;
 
     }
-
 
 }

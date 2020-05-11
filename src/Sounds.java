@@ -12,7 +12,6 @@ public class Sounds {
     Clip Win;
 
 
-
     FloatControl sfx_controller1;
     FloatControl sfx_controller2;
     FloatControl sfx_controller3;
@@ -66,13 +65,22 @@ public class Sounds {
         Move.setMicrosecondPosition(0);
         Move.start();
     }
-    public void playWin(){
+
+    public void playWin() {
         System.out.println("Played win");
         Win.setMicrosecondPosition(0);
-        Win.start();
+        try {
+            Thread.sleep(500);
+            Win.start();
+        } catch (Exception e) {
+            System.err.println("Error loading sound!");
+        }
+
+
     }
 
     public void playBackGround() {
+        Background.setMicrosecondPosition(0);
         Background.start();
     }
 
