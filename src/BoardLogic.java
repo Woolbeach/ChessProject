@@ -92,19 +92,19 @@ public class BoardLogic {
 
     }
 
-    public int movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
+    public void movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
         if(gameOver){
             System.out.println("can't move, game is over");
-            return 0;
+            return;
         }
         GamePiece currentPiece = pieceArray[fromy][fromx];
         if (currentPiece == null) {
-            return 0;
+            return;
         }
         if (whosturn == currentPiece.isBlack()) {
-            return 0;
+            return;
         } else if (!whosturn == currentPiece.isWhite()) {
-            return 0;
+            return;
         }
         System.out.println(currentPiece);
         if (currentPiece.canMove(toy, tox, pieceArray) == true) {
@@ -112,18 +112,16 @@ public class BoardLogic {
             undoFromY[numberOfTurns] = fromy;
             undoToX[numberOfTurns] = tox;
             undoToY[numberOfTurns] = toy;
-            int temp1 = movepieceonBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
+            movepieceonBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
             currentPiece.update(toy, tox);
             whitesTurn = !whitesTurn;
             numberOfTurns++;
-            return temp1;
         }
-        return 0;
+        return;
     }
 
-    public int movepieceonBoard(int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
+    public void movepieceonBoard(int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
         int temp1 = boardArray[fromy][fromx];
-        int temp2 = 0;
         GamePiece currentPiece = pieceArray[fromy][fromx];
         pieceArray[fromy][fromx] = null;
         boardArray[fromy][fromx] = 0;
@@ -142,11 +140,9 @@ public class BoardLogic {
             gameOver = true;
 
             sounds.playWin();
-            temp2 = 1;
         }
         boardArray[toy][tox] = temp1;
         pieceArray[toy][tox] = currentPiece;
-        return temp2;
     }
 
     public void Undo(int[][] boardArray, GamePiece[][] pieceArray) {
