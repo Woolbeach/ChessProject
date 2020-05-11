@@ -129,6 +129,7 @@ public class BoardLogic {
     }
     public void Undo(int[] undoFromX,int[] undoFromY,int[] undoToX,int[] undoToY, int[][] boardArray, GamePiece[][] pieceArray){
         System.out.println("undo");
+        System.out.println(whitesTurn);
         int tempNumberOfTurns=numberOfTurns;
         newGame();
         for(int i=0;i<tempNumberOfTurns-1;i++) {
@@ -139,6 +140,7 @@ public class BoardLogic {
             boardArray[undoToY[i]][undoToX[i]] = temp1;
             pieceArray[undoToY[i]][undoToX[i]] = currentPiece;
             currentPiece.update(undoToY[i],undoToX[i]);
+            whitesTurn=!whitesTurn;
         }
         numberOfTurns=tempNumberOfTurns-1;
         System.out.println("Undo done");

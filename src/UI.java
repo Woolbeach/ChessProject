@@ -84,7 +84,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Undo was pressed");
                 boardLogic.Undo(boardLogic.undoFromX, boardLogic.undoFromY, boardLogic.undoToX, boardLogic.undoToY, boardLogic.boardTracking, boardLogic.pieceLogic);
-                upDate(boardLogic.whitesTurn,boardLogic.numberOfTurns);
+                upDate(boardLogic.whitesTurn, boardLogic.numberOfTurns);
             }
         });
     }
