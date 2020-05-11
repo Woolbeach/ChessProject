@@ -82,7 +82,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Undo was pressed");
                 boardLogic.Undo(boardLogic.boardTracking, boardLogic.pieceLogic);
-                upDate(boardLogic.whitesTurn, boardLogic.numberOfTurns);
+                upDate();
             }
         });
 
@@ -98,6 +98,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(1);
                 System.out.println("load save 1");
+                upDate();
             }
         });
         save2Button.addActionListener(new ActionListener() {
@@ -112,6 +113,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(2);
                 System.out.println("load save 2");
+                upDate();
             }
         });
         save3Button.addActionListener(new ActionListener() {
@@ -126,13 +128,14 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(3);
                 System.out.println("load save 3");
+                upDate();
             }
         });
     }
 
-    public void upDate(boolean whiteTurn, int moves) {
-        roundsLabel.setText("Total moves: " + moves);
-        if (whiteTurn) {
+    public void upDate() {
+        roundsLabel.setText("Total moves: " + boardLogic.numberOfTurns);
+        if (boardLogic.whitesTurn) {
             turnLabel.setText("White, make a move!");
         } else {
             turnLabel.setText("Black, make a move!");
@@ -194,12 +197,13 @@ public class UI {
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$("Arial Black", Font.BOLD, 16, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
+        label1.setHorizontalAlignment(0);
+        label1.setHorizontalTextPosition(0);
         label1.setText("Sound Options");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 5;
-        gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(label1, gbc);
         final JPanel spacer1 = new JPanel();
         gbc = new GridBagConstraints();
@@ -225,7 +229,6 @@ public class UI {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 6;
-        gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(label2, gbc);
         muteButton = new JButton();
         muteButton.setText("Mute All");
@@ -247,7 +250,6 @@ public class UI {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 12;
-        gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(label3, gbc);
         newGameButton = new JButton();
         newGameButton.setText("New Game");
@@ -268,7 +270,6 @@ public class UI {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 8;
-        gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(label4, gbc);
         final JLabel label5 = new JLabel();
         Font label5Font = this.$$$getFont$$$("Arial Black", Font.BOLD, 16, label5.getFont());
@@ -277,7 +278,6 @@ public class UI {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(label5, gbc);
         final JPanel spacer4 = new JPanel();
         gbc = new GridBagConstraints();
@@ -290,14 +290,12 @@ public class UI {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(turnLabel, gbc);
         roundsLabel = new JLabel();
         roundsLabel.setText("Total moves: 0");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(roundsLabel, gbc);
         final JPanel spacer5 = new JPanel();
         gbc = new GridBagConstraints();
@@ -319,7 +317,6 @@ public class UI {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 16;
-        gbc.anchor = GridBagConstraints.WEST;
         UI_Panel.add(label6, gbc);
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));

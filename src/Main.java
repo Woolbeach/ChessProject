@@ -64,7 +64,7 @@ public class Main {
                     int temp1 = boardLogic.movepiece(boardLogic.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, boardLogic.boardTracking, boardLogic.pieceLogic);
 
                     clicks[0] = 0;
-                    mitUI.upDate(boardLogic.whitesTurn,boardLogic.numberOfTurns);
+                    mitUI.upDate();
                     if(temp1 == 1){
                         mitUI.whoWon(boardLogic.whitesTurn);
                     }
