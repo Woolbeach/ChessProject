@@ -50,7 +50,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
 
                 Object[] options = {"Yes, please",
-                        "No, cancel", "Yes from, save"};
+                        "No, cancel"};
                 int n = JOptionPane.showOptionDialog(JOptionPane.getRootFrame(),
                         "Want to create a new game?",
                         "Warning",
@@ -58,7 +58,7 @@ public class UI {
                         JOptionPane.QUESTION_MESSAGE,
                         null,
                         options,
-                        options[2]);
+                        options[1]);
 
                 System.out.println("New game! " + n);
 
@@ -67,12 +67,6 @@ public class UI {
                     roundsLabel.setText("Total moves: 0");
                     turnLabel.setText("White, make a move!");
                 }
-
-                if (n == 2) {
-                    System.out.println("Load from save");
-                }
-                /*String spm = "Want to create a new game?";
-                String svar = JOptionPane.showInputDialog(spm, "ja");*/
 
             }
         });
@@ -142,6 +136,14 @@ public class UI {
             turnLabel.setText("White, make a move!");
         } else {
             turnLabel.setText("Black, make a move!");
+        }
+    }
+
+    public void whoWon(boolean WhiteOrBlack) {
+        if (WhiteOrBlack) {
+            turnLabel.setText("Black won!");
+        } else {
+            turnLabel.setText("White won!");
         }
     }
 

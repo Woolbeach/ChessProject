@@ -6,6 +6,7 @@ public class BoardLogic {
     GamePiece[][] pieceLogic = new GamePiece[8][8];
     int[][] boardTracking = new int[8][8];
     Sounds sounds = new Sounds();
+    UI ourUI;
     boolean whitesTurn = true;
     int numberOfTurns = 0;
     JFrame fromMain;
@@ -34,6 +35,7 @@ public class BoardLogic {
     }
 
     public void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
+
 
         //black pawns
         for (int i = 0; i < 8; i++) {
@@ -88,15 +90,15 @@ public class BoardLogic {
 
     }
 
-    public void movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
+    public int movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
         GamePiece currentPiece = pieceArray[fromy][fromx];
         if (currentPiece == null) {
-            return;
+            return 0;
         }
         if (whosturn == currentPiece.isBlack()) {
-            return;
+            return 0;
         } else if (!whosturn == currentPiece.isWhite()) {
-            return;
+            return 0;
         }
         System.out.println(currentPiece);
         if (currentPiece.canMove(toy, tox, pieceArray) == true) {
@@ -104,15 +106,18 @@ public class BoardLogic {
             undoFromY[numberOfTurns] = fromy;
             undoToX[numberOfTurns] = tox;
             undoToY[numberOfTurns] = toy;
-            movepieceonBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
+            int temp1 = movepieceonBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
             currentPiece.update(toy, tox);
             whitesTurn = !whitesTurn;
             numberOfTurns++;
+            return temp1;
         }
+        return 0;
     }
 
-    public void movepieceonBoard(int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
+    public int movepieceonBoard(int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
         int temp1 = boardArray[fromy][fromx];
+        int temp2 = 0;
         GamePiece currentPiece = pieceArray[fromy][fromx];
         pieceArray[fromy][fromx] = null;
         boardArray[fromy][fromx] = 0;
@@ -123,17 +128,18 @@ public class BoardLogic {
         }
         if (boardArray[toy][tox] == 6 || boardArray[toy][tox] == 12) {
             if(whitesTurn){
-                System.out.println("Sort Vinder");
-
+                System.out.println("Hvid Vinder");
             }
             else{
-                System.out.println("Hvid vinder");
+                System.out.println("Sort vinder");
             }
+
             sounds.playWin();
+            temp2 = 1;
         }
         boardArray[toy][tox] = temp1;
         pieceArray[toy][tox] = currentPiece;
-
+        return temp2;
     }
 
     public void Undo(int[][] boardArray, GamePiece[][] pieceArray) {
