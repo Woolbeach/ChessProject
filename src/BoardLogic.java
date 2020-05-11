@@ -100,12 +100,12 @@ public class BoardLogic {
         }
         System.out.println(currentPiece);
         if (currentPiece.canMove(toy, tox, pieceArray) == true) {
-            undoFromX[numberOfTurns]=fromx;
-            undoFromY[numberOfTurns]=fromy;
-            undoToX[numberOfTurns]=tox;
-            undoToY[numberOfTurns]=toy;
+            undoFromX[numberOfTurns] = fromx;
+            undoFromY[numberOfTurns] = fromy;
+            undoToX[numberOfTurns] = tox;
+            undoToY[numberOfTurns] = toy;
             movepieceonBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
-            currentPiece.update(toy,tox);
+            currentPiece.update(toy, tox);
             whitesTurn = !whitesTurn;
             numberOfTurns++;
         }
@@ -128,24 +128,26 @@ public class BoardLogic {
         pieceArray[toy][tox] = currentPiece;
 
     }
-    public void Undo(int[][] boardArray, GamePiece[][] pieceArray){
-        if(numberOfTurns<=0){
+
+    public void Undo(int[][] boardArray, GamePiece[][] pieceArray) {
+        if (numberOfTurns <= 0) {
             return;
         }
-        int tempNumberOfTurns=numberOfTurns;
+        int tempNumberOfTurns = numberOfTurns;
         newGame();
-        for(int i=0;i<tempNumberOfTurns-1;i++) {
+        for (int i = 0; i < tempNumberOfTurns - 1; i++) {
             int temp1 = boardArray[undoFromY[i]][undoFromX[i]];
             GamePiece currentPiece = pieceArray[undoFromY[i]][undoFromX[i]];
             pieceArray[undoFromY[i]][undoFromX[i]] = null;
             boardArray[undoFromY[i]][undoFromX[i]] = 0;
             boardArray[undoToY[i]][undoToX[i]] = temp1;
             pieceArray[undoToY[i]][undoToX[i]] = currentPiece;
-            currentPiece.update(undoToY[i],undoToX[i]);
-            whitesTurn=!whitesTurn;
+            currentPiece.update(undoToY[i], undoToX[i]);
+            whitesTurn = !whitesTurn;
         }
-        numberOfTurns=tempNumberOfTurns-1;
+        numberOfTurns = tempNumberOfTurns - 1;
     }
+
     public GamePiece getPieceLogic(int x, int y) {
         return pieceLogic[x][y];
     }

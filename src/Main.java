@@ -22,7 +22,6 @@ public class Main {
 
         JPanel mainPanel = new JPanel();
 
-
         Dimension mySize = new Dimension();
         mySize.setSize(square * 8, square * 8);
         panel.setPreferredSize(mySize);
