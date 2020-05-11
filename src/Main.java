@@ -64,7 +64,7 @@ public class Main {
 
                     clicks[0] = 0;
                     vindue.repaint();
-                    mitUI.upDate(boardLogic.whitesTurn,boardLogic.numberOfTurns);
+                    mitUI.upDate(boardLogic.whitesTurn, boardLogic.numberOfTurns);
                 } else {
                     oldxpos[0] = xpos / square;
                     oldypos[0] = ypos / square;
@@ -72,7 +72,7 @@ public class Main {
                     int squarey = ypos / square;
                     Color selectedColor = new Color(18, 50, 150, 127);
                     Color movesColor = new Color(188, 10, 40, 100);
-                    Color possibleMoves = new Color(0,150,0,100);
+                    Color possibleMoves = new Color(0, 150, 0, 100);
                     //draw selected square
                     Graphics g = mainPanel.getGraphics();
                     g.setColor(Color.blue);
@@ -85,11 +85,11 @@ public class Main {
                     GamePiece possiblePiece = boardLogic.pieceLogic[oldypos[0]][oldxpos[0]];
                     System.out.println(oldxpos[0]);
                     System.out.println(oldypos[0]);
-                    if(possiblePiece!=null){
-                        for(int i=0;i<8;i++){
-                            for(int j=0;j<8;j++){
+                    if (possiblePiece != null) {
+                        for (int i = 0; i < 8; i++) {
+                            for (int j = 0; j < 8; j++) {
                                 {
-                                    if(possiblePiece.canMove(j,i,boardLogic.pieceLogic)) {
+                                    if (possiblePiece.canMove(j, i, boardLogic.pieceLogic)) {
                                         g.setColor(possibleMoves);
                                         g.drawRect(i * square, j * square, square, square);
                                         g.fillRect(i * square, j * square, square, square);
