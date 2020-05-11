@@ -25,6 +25,7 @@ public class Main {
         Dimension mySize = new Dimension();
         mySize.setSize(square * 8, square * 8);
         panel.setPreferredSize(mySize);
+        //commit
 
         LayoutManager mitLay = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();

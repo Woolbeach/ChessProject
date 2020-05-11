@@ -23,6 +23,7 @@ public class BoardLogic {
     }
 
     public void newGame() {
+        gameOver = false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 boardTracking[i][j] = 0;
