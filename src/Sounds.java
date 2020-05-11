@@ -68,7 +68,6 @@ public class Sounds {
 
     public void playWin() {
         System.out.println("Played win");
-        Background.stop();
         Win.setMicrosecondPosition(0);
         try {
             Thread.sleep(500);
