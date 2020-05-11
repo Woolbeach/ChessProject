@@ -100,7 +100,7 @@ public class Sounds {
 
         //finder først det totalle område der kan sættes lyd i, det går fra -80 til 6,xxx
         //float onestep = (-1 * sfx_controller1.getMinimum() + sfx_controller1.getMaximum()) / 100;
-        float onestep = (-1 * -55.0f + sfx_controller1.getMaximum()) / 100;
+        float onestep = (-1 * -60.0f + sfx_controller1.getMaximum()) / 100;
 
         float volume = sfx_controller1.getMaximum() - ((100 - slider_value) * onestep);
 

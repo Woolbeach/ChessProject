@@ -65,11 +65,13 @@ public class Main {
                     boardLogic.movepiece(boardLogic.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, boardLogic.boardTracking, boardLogic.pieceLogic);
 
                     clicks[0] = 0;
+
                     mitUI.upDate();
+                    vindue.repaint();
                     if(boardLogic.gameOver){
                         mitUI.whoWon(boardLogic.whitesTurn);
                     }
-                    vindue.repaint();
+
                 } else {
                     oldxpos[0] = xpos / square;
                     oldypos[0] = ypos / square;
