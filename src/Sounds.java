@@ -76,8 +76,6 @@ public class Sounds {
         } catch (Exception e) {
             System.err.println("Error loading sound!");
         }
-
-
     }
 
     public void playBackGround() {

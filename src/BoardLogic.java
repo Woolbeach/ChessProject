@@ -10,6 +10,7 @@ public class BoardLogic {
     boolean whitesTurn = true;
     int numberOfTurns = 0;
     JFrame fromMain;
+    boolean gameOver = false;
 
     int[] undoFromX = new int[269];
     int[] undoFromY = new int[269];
@@ -91,6 +92,10 @@ public class BoardLogic {
     }
 
     public int movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
+        if(gameOver){
+            System.out.println("can't move, game is over");
+            return 0;
+        }
         GamePiece currentPiece = pieceArray[fromy][fromx];
         if (currentPiece == null) {
             return 0;
@@ -133,6 +138,7 @@ public class BoardLogic {
             else{
                 System.out.println("Sort vinder");
             }
+            gameOver = true;
 
             sounds.playWin();
             temp2 = 1;
