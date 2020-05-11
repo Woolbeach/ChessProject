@@ -10,7 +10,7 @@ public class Filehandler {
 
     public void saveGame(int x, int numberOfTurns) {
         try {
-            FileWriter file = new FileWriter("save" + x, false);
+            FileWriter file = new FileWriter("save" + x);
             PrintWriter out = new PrintWriter(file);
 
             for (int i = 0; i < numberOfTurns; i++) {

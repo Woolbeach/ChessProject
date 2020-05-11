@@ -35,7 +35,6 @@ public class BoardLogic {
 
     public void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
 
-
         //black pawns
         for (int i = 0; i < 8; i++) {
             pieceArray[1][i] = new Pawn(1, i, false);
