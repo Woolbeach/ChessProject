@@ -124,11 +124,12 @@ public class BoardLogic {
         if (boardArray[toy][tox] == 6 || boardArray[toy][tox] == 12) {
             if(whitesTurn){
                 System.out.println("Sort Vinder");
+
             }
             else{
                 System.out.println("Hvid vinder");
             }
-
+            sounds.playWin();
         }
         boardArray[toy][tox] = temp1;
         pieceArray[toy][tox] = currentPiece;

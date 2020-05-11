@@ -5,21 +5,28 @@ public class Sounds {
     File backgroundSound = new File("ressources/background.wav");
     File attackSound = new File("ressources/BrickDamage.wav");
     File moveSound = new File("ressources/MoveBrick.wav");
+    File winSound = new File("ressources/win.wav");
     Clip Background;
     Clip Attack;
     Clip Move;
+    Clip Win;
+
+
 
     FloatControl sfx_controller1;
     FloatControl sfx_controller2;
+    FloatControl sfx_controller3;
     FloatControl bgmusic_controller;
 
     Sounds() {
         Background = loadFile(backgroundSound, bgmusic_controller);
         Attack = loadFile(attackSound, sfx_controller1);
         Move = loadFile(moveSound, sfx_controller2);
+        Win = loadFile(winSound, sfx_controller3);
         //bgmusic_controller.setValue(-30.0f);
         sfx_controller1 = (FloatControl) Attack.getControl(FloatControl.Type.MASTER_GAIN);
         sfx_controller2 = (FloatControl) Move.getControl(FloatControl.Type.MASTER_GAIN);
+        sfx_controller3 = (FloatControl) Win.getControl(FloatControl.Type.MASTER_GAIN);
         bgmusic_controller = (FloatControl) Background.getControl(FloatControl.Type.MASTER_GAIN);
         bgmusic_controller.setValue(-20);
     }
@@ -58,6 +65,11 @@ public class Sounds {
         System.out.println("played move");
         Move.setMicrosecondPosition(0);
         Move.start();
+    }
+    public void playWin(){
+        System.out.println("Played win");
+        Win.setMicrosecondPosition(0);
+        Win.start();
     }
 
     public void playBackGround() {
