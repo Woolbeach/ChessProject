@@ -53,7 +53,6 @@ public class Main {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                long start = System.currentTimeMillis();
                 clicks[0]++;
                 int xpos = e.getX() - 5;
                 int ypos = e.getY() - 31;
