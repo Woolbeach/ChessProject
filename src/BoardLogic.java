@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 import java.util.*;
 public class BoardLogic {
@@ -42,7 +43,8 @@ public class BoardLogic {
 
     public void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
 
-
+        WhitePieces.clear();
+        BlackPieces.clear();
         //black pawns
         for (int i = 0; i < 8; i++) {
             pieceArray[1][i] = new Pawn(1, i, false);
@@ -135,12 +137,13 @@ public class BoardLogic {
         currentPiece.update(toy, tox);
 
         isChecked = 0;
-
+        int lengthWhite= (WhitePieces.size())-1;
+        int lengthBlack= (BlackPieces.size())-1;
         if (whosturn == true && checkWhiteKing(tox, toy) == true) {
             System.out.println("Skak");
             isChecked = 3;
         }
-        if(whosturn==true && currentPiece.canMove(BlackPieces.get(15).getX(),BlackPieces.get(15).getY(),pieceArray)){
+        if(whosturn==true && currentPiece.canMove(BlackPieces.get(lengthBlack).getX(),BlackPieces.get(lengthBlack).getY(),pieceArray)){
             System.out.println("Black is checked");
             isChecked = 1;
         }
@@ -148,7 +151,7 @@ public class BoardLogic {
             System.out.println("Skak");
             isChecked = 4;
         }
-        if(whosturn==false && currentPiece.canMove(WhitePieces.get(15).getX(),WhitePieces.get(15).getY(),pieceArray)){
+        if(whosturn==false && currentPiece.canMove(WhitePieces.get(lengthWhite).getX(),WhitePieces.get(lengthWhite).getY(),pieceArray)){
             System.out.println("White is checked");
             isChecked = 2;
         }
@@ -173,6 +176,21 @@ public class BoardLogic {
     public void movePieceOnBoard(int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
         int temp1 = boardArray[fromy][fromx];
         GamePiece currentPiece = pieceArray[fromy][fromx];
+        GamePiece currentPieceTo = pieceArray[toy][tox];
+        if(currentPieceTo!=null) {
+            if (currentPiece.isWhite()) {
+                BlackPieces.remove(currentPieceTo);
+                for (GamePiece gamePiece: WhitePieces) {
+                    System.out.println(gamePiece);
+                }
+            }
+            if (currentPiece.isBlack()) {
+                WhitePieces.remove(currentPieceTo);
+                for (GamePiece gamePiece: WhitePieces) {
+                    System.out.println(gamePiece);
+                }
+            }
+        }
         pieceArray[fromy][fromx] = null;
         boardArray[fromy][fromx] = 0;
         if (boardArray[toy][tox] >= 1) {
@@ -214,28 +232,29 @@ public class BoardLogic {
         numberOfTurns = tempNumberOfTurns - 1;
     }
     public boolean checkBlackKing(int tox,int toy){
-        int i=0;
+        int length= (WhitePieces.size())-1;
+        System.out.println(length);
         for (GamePiece GamePiece:WhitePieces) {
-            if(WhitePieces.get(i).canMove(BlackPieces.get(15).getX(),BlackPieces.get(15).getY(),pieceLogic)){
-                if(WhitePieces.get(i).getX()==toy &&WhitePieces.get(i).getY()==tox ){
+            //System.out.println(WhitePieces.get(i));
+            //System.out.println(WhitePieces.get(i).canMove(BlackPieces.get(length).getX(),BlackPieces.get(length).getY(),pieceLogic));
+            if(GamePiece.canMove(BlackPieces.get(length).getX(),BlackPieces.get(length).getY(),pieceLogic)){
+                if(GamePiece.getX()==toy && GamePiece.getY()==tox ){
                     continue;
                 }
                 return true;
             }
-            i++;
         }
         return false;
     }
     public boolean checkWhiteKing(int tox,int toy){
-        int i=0;
+        int length= WhitePieces.size()-1;
         for (GamePiece GamePiece:BlackPieces) {
-            if(BlackPieces.get(i).canMove(WhitePieces.get(15).getX(),WhitePieces.get(15).getY(),pieceLogic)){
-                if(BlackPieces.get(i).getX()==toy &&BlackPieces.get(i).getY()==tox ){
+            if(GamePiece.canMove(WhitePieces.get(length).getX(),WhitePieces.get(length).getY(),pieceLogic)){
+                if(GamePiece.getX()==toy && GamePiece.getY()==tox ){
                     continue;
                 }
                 return true;
             }
-            i++;
         }
         return false;
     }
