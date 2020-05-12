@@ -128,6 +128,7 @@ public class BoardLogic {
         } else if (!whosturn == currentPiece.isWhite()) {
             return;
         }
+
         GamePiece currentPieceTo = pieceArray[toy][tox];
         pieceArray[fromy][fromx] = null;
         pieceArray[toy][tox] = currentPiece;
@@ -136,17 +137,19 @@ public class BoardLogic {
             pieceArray[fromy][fromx] = currentPiece;
             pieceArray[toy][tox] = currentPieceTo;
             currentPiece.update(fromy, fromx);
-            return;
+            System.out.println("Skak");
         }
         if (whosturn == false && checkBlackKing(tox, toy) == true) {
             pieceArray[fromy][fromx] = currentPiece;
             pieceArray[toy][tox] = currentPieceTo;
             currentPiece.update(fromy, fromx);
-            return;
+            System.out.println("Skak");
         }
         pieceArray[fromy][fromx] = currentPiece;
         pieceArray[toy][tox] = currentPieceTo;
         currentPiece.update(fromy, fromx);
+
+
         if (currentPiece.canMove(toy, tox, pieceArray) == true) {
             undoFromX[numberOfTurns] = fromx;
             undoFromY[numberOfTurns] = fromy;
