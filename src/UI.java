@@ -81,7 +81,7 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Undo was pressed");
-                boardLogic.Undo(boardLogic.boardTracking, boardLogic.pieceLogic);
+                boardLogic.undo(boardLogic.boardTracking, boardLogic.pieceLogic);
                 upDate();
             }
         });

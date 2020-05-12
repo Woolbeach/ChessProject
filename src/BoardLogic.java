@@ -17,7 +17,7 @@ public class BoardLogic {
     int[] undoToY = new int[269];
 
     public BoardLogic() {
-        LoadPieces(boardTracking, pieceLogic);
+        loadPieces(boardTracking, pieceLogic);
         sounds.playBackGround();
     }
 
@@ -31,11 +31,11 @@ public class BoardLogic {
         }
         whitesTurn = true;
         numberOfTurns = 0;
-        LoadPieces(boardTracking, pieceLogic);
+        loadPieces(boardTracking, pieceLogic);
         fromMain.repaint();
     }
 
-    public void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
+    public void loadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
 
 
         //black pawns
@@ -144,7 +144,7 @@ public class BoardLogic {
         pieceArray[toy][tox] = currentPiece;
     }
 
-    public void Undo(int[][] boardArray, GamePiece[][] pieceArray) {
+    public void undo(int[][] boardArray, GamePiece[][] pieceArray) {
         if (numberOfTurns <= 0) {
             return;
         }
