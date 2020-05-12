@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class gameWindow extends JPanel {
+public class GameWindow extends JPanel {
     public int squareSize = 10;
     public int[][] board;
     public boolean selected;
@@ -23,7 +23,7 @@ public class gameWindow extends JPanel {
     BufferedImage whtqueen = null;
     BufferedImage whtking = null;
 
-    public gameWindow(int input, int[][] braet) {
+    public GameWindow(int input, int[][] braet) {
         board = braet;
         squareSize = input;
         try {

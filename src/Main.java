@@ -15,7 +15,7 @@ public class Main {
         final int[] oldypos = new int[1];
         int square = 80;
 
-        gameWindow panel = new gameWindow(square, boardLogic.boardTracking);                          // opret panelet
+        GameWindow panel = new GameWindow(square, boardLogic.boardTracking);                          // opret panelet
         JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
 
         boardLogic.fromMain = vindue;
