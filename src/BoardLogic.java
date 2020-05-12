@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.*;
+
 public class BoardLogic {
     FileHandler filehandler = new FileHandler(this);
     GamePiece[][] pieceLogic = new GamePiece[8][8];
@@ -12,8 +13,8 @@ public class BoardLogic {
     JFrame fromMain;
     boolean gameOver = false;
 
-    ArrayList<GamePiece> WhitePieces =new ArrayList<>();
-    ArrayList<GamePiece> BlackPieces =new ArrayList<>();
+    ArrayList<GamePiece> WhitePieces = new ArrayList<>();
+    ArrayList<GamePiece> BlackPieces = new ArrayList<>();
 
     int[] undoFromX = new int[269];
     int[] undoFromY = new int[269];
@@ -114,7 +115,7 @@ public class BoardLogic {
     }
 
     public void movepiece(boolean whosturn, int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
-        if(gameOver){
+        if (gameOver) {
             System.out.println("can't move, game is over");
             return;
         }
@@ -132,13 +133,13 @@ public class BoardLogic {
         pieceArray[fromy][fromx] = null;
         pieceArray[toy][tox] = currentPiece;
         currentPiece.update(toy, tox);
-        if(whosturn==true && checkWhiteKing(tox,toy)==true){
+        if (whosturn == true && checkWhiteKing(tox, toy) == true) {
             pieceArray[fromy][fromx] = currentPiece;
             pieceArray[toy][tox] = currentPieceTo;
             currentPiece.update(fromy, fromx);
             System.out.println("Skak");
         }
-        if(whosturn==false && checkBlackKing(tox,toy)==true){
+        if (whosturn == false && checkBlackKing(tox, toy) == true) {
             pieceArray[fromy][fromx] = currentPiece;
             pieceArray[toy][tox] = currentPieceTo;
             currentPiece.update(fromy, fromx);
@@ -173,10 +174,9 @@ public class BoardLogic {
             sounds.playMoveSound();
         }
         if (boardArray[toy][tox] == 6 || boardArray[toy][tox] == 12) {
-            if(whitesTurn){
+            if (whitesTurn) {
                 System.out.println("Hvid Vinder");
-            }
-            else{
+            } else {
                 System.out.println("Sort vinder");
             }
             gameOver = true;
@@ -205,11 +205,12 @@ public class BoardLogic {
         }
         numberOfTurns = tempNumberOfTurns - 1;
     }
-    public boolean checkBlackKing(int tox,int toy){
-        int i=0;
-        for (GamePiece GamePiece:WhitePieces) {
-            if(WhitePieces.get(i).canMove(BlackPieces.get(15).getX(),BlackPieces.get(15).getY(),pieceLogic)){
-                if(WhitePieces.get(i).getX()==toy &&WhitePieces.get(i).getY()==tox ){
+
+    public boolean checkBlackKing(int tox, int toy) {
+        int i = 0;
+        for (GamePiece GamePiece : WhitePieces) {
+            if (WhitePieces.get(i).canMove(BlackPieces.get(15).getX(), BlackPieces.get(15).getY(), pieceLogic)) {
+                if (WhitePieces.get(i).getX() == toy && WhitePieces.get(i).getY() == tox) {
                     continue;
                 }
                 return true;
@@ -218,11 +219,12 @@ public class BoardLogic {
         }
         return false;
     }
-    public boolean checkWhiteKing(int tox,int toy){
-        int i=0;
-        for (GamePiece GamePiece:BlackPieces) {
-            if(BlackPieces.get(i).canMove(WhitePieces.get(15).getX(),WhitePieces.get(15).getY(),pieceLogic)){
-                if(BlackPieces.get(i).getX()==toy &&BlackPieces.get(i).getY()==tox ){
+
+    public boolean checkWhiteKing(int tox, int toy) {
+        int i = 0;
+        for (GamePiece GamePiece : BlackPieces) {
+            if (BlackPieces.get(i).canMove(WhitePieces.get(15).getX(), WhitePieces.get(15).getY(), pieceLogic)) {
+                if (BlackPieces.get(i).getX() == toy && BlackPieces.get(i).getY() == tox) {
                     continue;
                 }
                 return true;

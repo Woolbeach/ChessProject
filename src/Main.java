@@ -66,7 +66,7 @@ public class Main {
 
                     clicks[0] = 0;
 
-                    mitUI.upDate();
+                    mitUI.update();
                     vindue.repaint();
                     if(boardLogic.gameOver){
                         mitUI.whoWon(boardLogic.whitesTurn);

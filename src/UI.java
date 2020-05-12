@@ -82,7 +82,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Undo was pressed");
                 boardLogic.undo(boardLogic.boardTracking, boardLogic.pieceLogic);
-                upDate();
+                update();
             }
         });
 
@@ -98,7 +98,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(1);
                 System.out.println("load save 1");
-                upDate();
+                update();
             }
         });
         save2Button.addActionListener(new ActionListener() {
@@ -113,7 +113,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(2);
                 System.out.println("load save 2");
-                upDate();
+                update();
             }
         });
         save3Button.addActionListener(new ActionListener() {
@@ -128,12 +128,12 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(3);
                 System.out.println("load save 3");
-                upDate();
+                update();
             }
         });
     }
 
-    public void upDate() {
+    public void update() {
         roundsLabel.setText("Total moves: " + boardLogic.numberOfTurns);
         if (boardLogic.whitesTurn) {
             turnLabel.setText("White, make a move!");
