@@ -29,7 +29,7 @@ public class Pawn extends GamePiece {
         {
             for(int i=1; i < initialMove; i++)
             {
-                GamePiece p=board[destination_x][destination_y];
+                GamePiece p=board[this.getX()-i][this.getY()];
                 if(p != null)
                 {
                     return false;
@@ -44,7 +44,7 @@ public class Pawn extends GamePiece {
         {
             for(int i=1; i < initialMove;i++)
             {
-                GamePiece p=board[destination_x][destination_y];
+                GamePiece p=board[this.getX()+i][this.getY()];
                 if(p != null)
                 {
                     return false;

@@ -44,7 +44,6 @@ public class Rook extends GamePiece {
         {
             direction="west";
         }
-        System.out.println(direction);
         if(direction.equals("south"))
         {
             int spaces_to_move=Math.abs(destination_x - this.getX());
