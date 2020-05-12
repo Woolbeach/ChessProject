@@ -83,11 +83,11 @@ public class Sounds {
         Background.loop(15);
     }
 
-    public void setMusicvolume(int value) {
+    public void setMusicVolume(int value) {
         bgmusic_controller.setValue(sliderToFloat(value));
     }
 
-    public void setSfxvolume(int value) {
+    public void setSFXVolume(int value) {
         float temp1 = sliderToFloat(value);
         sfx_controller1.setValue(temp1);
         sfx_controller2.setValue(temp1);

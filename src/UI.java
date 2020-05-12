@@ -17,7 +17,7 @@ public class UI {
             @Override
             public void stateChanged(ChangeEvent e) {
                 System.out.println(musicSlider.getValue());
-                boardLogic.sounds.setMusicvolume(musicSlider.getValue());
+                boardLogic.sounds.setMusicVolume(musicSlider.getValue());
             }
         });
         muteButton.addActionListener(new ActionListener() {
@@ -29,16 +29,16 @@ public class UI {
                     muteButton.setText("Unmute All");
                     temp1 = sfxSlider.getValue();
                     temp2 = musicSlider.getValue();
-                    boardLogic.sounds.setMusicvolume(0);
-                    boardLogic.sounds.setSfxvolume(0);
+                    boardLogic.sounds.setMusicVolume(0);
+                    boardLogic.sounds.setSFXVolume(0);
                     sfxSlider.setValue(0);
                     musicSlider.setValue(0);
                     muteon = !muteon;
                 } else {
                     sfxSlider.setValue(temp1);
                     musicSlider.setValue(temp2);
-                    boardLogic.sounds.setMusicvolume(temp2);
-                    boardLogic.sounds.setSfxvolume(temp1);
+                    boardLogic.sounds.setMusicVolume(temp2);
+                    boardLogic.sounds.setSFXVolume(temp1);
                     System.out.println("mute now");
                     muteButton.setText("Mute All");
                     muteon = !muteon;
@@ -74,7 +74,7 @@ public class UI {
             @Override
             public void stateChanged(ChangeEvent e) {
                 System.out.println(sfxSlider.getValue());
-                boardLogic.sounds.setSfxvolume(sfxSlider.getValue());
+                boardLogic.sounds.setSFXVolume(sfxSlider.getValue());
             }
         });
         undo1MoveButton.addActionListener(new ActionListener() {
