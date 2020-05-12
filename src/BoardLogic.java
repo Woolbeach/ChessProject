@@ -111,7 +111,7 @@ public class BoardLogic {
             undoFromY[numberOfTurns] = fromy;
             undoToX[numberOfTurns] = tox;
             undoToY[numberOfTurns] = toy;
-            movepieceonBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
+            movePieceOnBoard(fromx, fromy, tox, toy, boardArray, pieceArray);
             currentPiece.update(toy, tox);
             whitesTurn = !whitesTurn;
             numberOfTurns++;
@@ -119,7 +119,7 @@ public class BoardLogic {
         return;
     }
 
-    public void movepieceonBoard(int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
+    public void movePieceOnBoard(int fromx, int fromy, int tox, int toy, int[][] boardArray, GamePiece[][] pieceArray) {
         int temp1 = boardArray[fromy][fromx];
         GamePiece currentPiece = pieceArray[fromy][fromx];
         pieceArray[fromy][fromx] = null;
