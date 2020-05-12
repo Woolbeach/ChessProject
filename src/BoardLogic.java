@@ -1,5 +1,6 @@
 import javax.swing.*;
-
+import java.util.ArrayList;
+import java.util.*;
 public class BoardLogic {
     FileHandler filehandler = new FileHandler(this);
     GamePiece[][] pieceLogic = new GamePiece[8][8];
@@ -11,13 +12,16 @@ public class BoardLogic {
     JFrame fromMain;
     boolean gameOver = false;
 
+    ArrayList<GamePiece> WhitePieces =new ArrayList<>();
+    ArrayList<GamePiece> BlackPieces =new ArrayList<>();
+
     int[] undoFromX = new int[269];
     int[] undoFromY = new int[269];
     int[] undoToX = new int[269];
     int[] undoToY = new int[269];
 
     public BoardLogic() {
-        loadPieces(boardTracking, pieceLogic);
+        LoadPieces(boardTracking, pieceLogic);
         sounds.playBackGround();
     }
 
@@ -31,61 +35,79 @@ public class BoardLogic {
         }
         whitesTurn = true;
         numberOfTurns = 0;
-        loadPieces(boardTracking, pieceLogic);
+        LoadPieces(boardTracking, pieceLogic);
         fromMain.repaint();
     }
 
-    public void loadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
+    public void LoadPieces(int[][] boardArray, GamePiece[][] pieceArray) {
 
 
         //black pawns
         for (int i = 0; i < 8; i++) {
             pieceArray[1][i] = new Pawn(1, i, false);
+            BlackPieces.add(pieceArray[1][i]);
             boardArray[1][i] = 1;
         }
 
         pieceArray[0][0] = new Rook(0, 0, false);
         pieceArray[0][7] = new Rook(0, 7, false);
+        BlackPieces.add(pieceArray[0][0]);
+        BlackPieces.add(pieceArray[0][7]);
         boardArray[0][0] = 2;
         boardArray[0][7] = 2;
         //black knights
         pieceArray[0][1] = new Knight(0, 1, false);
         pieceArray[0][6] = new Knight(0, 6, false);
+        BlackPieces.add(pieceArray[0][1]);
+        BlackPieces.add(pieceArray[0][6]);
         boardArray[0][1] = 3;
         boardArray[0][6] = 3;
         //black bishops
         pieceArray[0][2] = new Bishop(0, 2, false);
         pieceArray[0][5] = new Bishop(0, 5, false);
+        BlackPieces.add(pieceArray[0][2]);
+        BlackPieces.add(pieceArray[0][5]);
         boardArray[0][2] = 4;
         boardArray[0][5] = 4;
         //black king and queen
         pieceArray[0][3] = new Queen(0, 3, false);
         pieceArray[0][4] = new King(0, 4, false);
+        BlackPieces.add(pieceArray[0][3]);
+        BlackPieces.add(pieceArray[0][4]);
         boardArray[0][3] = 5;
         boardArray[0][4] = 6;
         //white pawns
         for (int i = 0; i < 8; i++) {
             pieceArray[6][i] = new Pawn(6, i, true);
+            WhitePieces.add(pieceArray[6][i]);
             boardArray[6][i] = 7;
         }
         //white rooks
         pieceArray[7][0] = new Rook(7, 0, true);
         pieceArray[7][7] = new Rook(7, 7, true);
+        WhitePieces.add(pieceArray[7][0]);
+        WhitePieces.add(pieceArray[7][7]);
         boardArray[7][0] = 8;
         boardArray[7][7] = 8;
         //white knights
         pieceArray[7][1] = new Knight(7, 1, true);
         pieceArray[7][6] = new Knight(7, 6, true);
+        WhitePieces.add(pieceArray[7][1]);
+        WhitePieces.add(pieceArray[7][6]);
         boardArray[7][1] = 9;
         boardArray[7][6] = 9;
         //white bishops
         pieceArray[7][2] = new Bishop(7, 2, true);
         pieceArray[7][5] = new Bishop(7, 5, true);
+        WhitePieces.add(pieceArray[7][2]);
+        WhitePieces.add(pieceArray[7][5]);
         boardArray[7][2] = 10;
         boardArray[7][5] = 10;
         //white king and
         pieceArray[7][3] = new Queen(7, 3, true);
         pieceArray[7][4] = new King(7, 4, true);
+        WhitePieces.add(pieceArray[7][3]);
+        WhitePieces.add(pieceArray[7][4]);
         boardArray[7][3] = 11;
         boardArray[7][4] = 12;
 
@@ -105,7 +127,25 @@ public class BoardLogic {
         } else if (!whosturn == currentPiece.isWhite()) {
             return;
         }
-        System.out.println(currentPiece);
+        GamePiece currentPieceTo = pieceArray[toy][tox];
+        pieceArray[fromy][fromx] = null;
+        pieceArray[toy][tox] = currentPiece;
+        currentPiece.update(toy, tox);
+        if(whosturn==true && checkWhiteKing(tox,toy)==true){
+            pieceArray[fromy][fromx] = currentPiece;
+            pieceArray[toy][tox] = currentPieceTo;
+            currentPiece.update(fromy, fromx);
+            return;
+        }
+        if(whosturn==false && checkBlackKing(tox,toy)==true){
+            pieceArray[fromy][fromx] = currentPiece;
+            pieceArray[toy][tox] = currentPieceTo;
+            currentPiece.update(fromy, fromx);
+            return;
+        }
+        pieceArray[fromy][fromx] = currentPiece;
+        pieceArray[toy][tox] = currentPieceTo;
+        currentPiece.update(fromy, fromx);
         if (currentPiece.canMove(toy, tox, pieceArray) == true) {
             undoFromX[numberOfTurns] = fromx;
             undoFromY[numberOfTurns] = fromy;
@@ -162,4 +202,31 @@ public class BoardLogic {
         }
         numberOfTurns = tempNumberOfTurns - 1;
     }
+    public boolean checkBlackKing(int tox,int toy){
+        int i=0;
+        for (GamePiece GamePiece:WhitePieces) {
+            if(WhitePieces.get(i).canMove(BlackPieces.get(15).getX(),BlackPieces.get(15).getY(),pieceLogic)){
+                if(WhitePieces.get(i).getX()==toy &&WhitePieces.get(i).getY()==tox ){
+                    continue;
+                }
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+    public boolean checkWhiteKing(int tox,int toy){
+        int i=0;
+        for (GamePiece GamePiece:BlackPieces) {
+            if(BlackPieces.get(i).canMove(WhitePieces.get(15).getX(),WhitePieces.get(15).getY(),pieceLogic)){
+                if(BlackPieces.get(i).getX()==toy &&BlackPieces.get(i).getY()==tox ){
+                    continue;
+                }
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+
 }

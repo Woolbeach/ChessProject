@@ -7,7 +7,6 @@ public class King extends GamePiece {
     @Override
     public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
         GamePiece possiblePiece = board[destination_x][destination_y];
-        System.out.println(possiblePiece);
         if (possiblePiece != null) {
             if (possiblePiece.isWhite() && this.isWhite()) {
                 return false;

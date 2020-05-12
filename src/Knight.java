@@ -9,8 +9,6 @@ public class Knight extends GamePiece {
     @Override
     public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
         GamePiece possiblePiece = board[destination_x][destination_y];
-        System.out.println(this.getY());
-        System.out.println(this.getX());
         if(possiblePiece !=null)
         {
             if(possiblePiece.isWhite()&& this.isWhite())

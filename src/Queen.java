@@ -9,10 +9,6 @@ public class Queen extends GamePiece {
     public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
         GamePiece possiblePiece = board[destination_x][destination_y];
         // gør at den ikke kan bevæge sig hen over en af dens egen farve
-        System.out.println(this.getX());
-        System.out.println(this.getY());
-        System.out.println(destination_x);
-        System.out.println(destination_y);
         if(possiblePiece !=null)
         {
             if(possiblePiece.isWhite()&& this.isWhite())
@@ -71,9 +67,7 @@ public class Queen extends GamePiece {
             int spaces_to_move=Math.abs(destination_x - this.getX());
             for(int i=1; i<spaces_to_move;i++)
             {
-                System.out.println("det er sket");
                 GamePiece p=board[this.getX()+i][this.getY()];
-                System.out.println(p);
                 if(p != null)
                 {
                     return false;
@@ -83,11 +77,9 @@ public class Queen extends GamePiece {
         if(direction.equals("north"))
         {
             int spaces_to_move=Math.abs(destination_x - this.getX());
-            System.out.println(spaces_to_move);
             for(int i=1; i<spaces_to_move;i++)
             {
                 GamePiece p=board[this.getX()-i][this.getY()];
-                System.out.println(p);
                 if(p != null)
                 {
                     return false;
@@ -100,7 +92,6 @@ public class Queen extends GamePiece {
             for(int i=1; i<spaces_to_move;i++)
             {
                 GamePiece p=board[this.getX()][this.getY()+i];;
-                System.out.println(p);
                 if(p != null)
                 {
                     return false;
@@ -163,7 +154,6 @@ public class Queen extends GamePiece {
             for(int i=1; i<spaces_to_move;i++)
             {
                 GamePiece p=board[this.getX()+i][this.getY()+i];
-                System.out.println(p);
                 if(p != null)
                 {
                     return false;

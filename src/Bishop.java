@@ -22,12 +22,8 @@ public class Bishop extends GamePiece {
         // dette er til så den kun kan bevæge sig kryds og tværs
         if ((Math.abs(this.getX()-destination_x)==Math.abs(this.getY()-destination_y))!=true)
         {
-            System.out.println(Math.abs(this.getX()-destination_x)==Math.abs(this.getY()-destination_y));
             return false;
         }
-        System.out.println(Math.abs(this.getX()-destination_x)==Math.abs(this.getY()-destination_y));
-        System.out.println(Math.abs(this.getX()-destination_x)==Math.abs(this.getY()-destination_y));
-        // dette er til så den ikke kan springe over en anden blok
         String direction="";
 
         if(destination_x> this.getX()&& destination_y<this.getY())
