@@ -1,8 +1,7 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class BoardLogic {
-    Filehandler filehandler = new Filehandler(this);
+    FileHandler filehandler = new FileHandler(this);
     GamePiece[][] pieceLogic = new GamePiece[8][8];
     int[][] boardTracking = new int[8][8];
     Sounds sounds = new Sounds();

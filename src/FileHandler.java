@@ -1,9 +1,9 @@
 import java.io.*;
 
-public class Filehandler {
+public class FileHandler {
     BoardLogic logicClass;
 
-    Filehandler(BoardLogic input) {
+    FileHandler(BoardLogic input) {
         logicClass = input;
     }
 
