@@ -134,16 +134,17 @@ public class BoardLogic {
         pieceArray[toy][tox] = currentPiece;
         currentPiece.update(toy, tox);
         if (whosturn == true && checkWhiteKing(tox, toy) == true) {
-            pieceArray[fromy][fromx] = currentPiece;
-            pieceArray[toy][tox] = currentPieceTo;
-            currentPiece.update(fromy, fromx);
             System.out.println("Skak");
         }
+
+        if(whosturn==true && currentPiece.canMove(BlackPieces.get(15).getX(),BlackPieces.get(15).getY(),pieceArray)){
+            System.out.println("Black is checked");
+        }
         if (whosturn == false && checkBlackKing(tox, toy) == true) {
-            pieceArray[fromy][fromx] = currentPiece;
-            pieceArray[toy][tox] = currentPieceTo;
-            currentPiece.update(fromy, fromx);
             System.out.println("Skak");
+        }
+        if(whosturn==false && currentPiece.canMove(WhitePieces.get(15).getX(),WhitePieces.get(15).getY(),pieceArray)){
+            System.out.println("White is checked");
         }
         pieceArray[fromy][fromx] = currentPiece;
         pieceArray[toy][tox] = currentPieceTo;

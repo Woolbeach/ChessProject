@@ -55,19 +55,19 @@ public class Sounds {
     }
 
     public void playAttackSound() {
-        System.out.println("played attack");
+        //System.out.println("played attack");
         Attack.setMicrosecondPosition(0);
         Attack.start();
     }
 
     public void playMoveSound() {
-        System.out.println("played move");
+        //System.out.println("played move");
         Move.setMicrosecondPosition(0);
         Move.start();
     }
 
     public void playWin() {
-        System.out.println("Played win");
+        //System.out.println("Played win");
         Win.setMicrosecondPosition(0);
         try {
             Thread.sleep(500);

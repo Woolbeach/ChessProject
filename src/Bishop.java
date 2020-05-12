@@ -45,7 +45,6 @@ public class Bishop extends GamePiece {
         {
             direction="northeast";
         }
-        System.out.println(direction);
         //denne her er den der går ned til venstre
         if(direction.equals("southwest"))
         {
@@ -91,7 +90,6 @@ public class Bishop extends GamePiece {
             for(int i=1; i<spaces_to_move;i++)
             {
                 GamePiece p=board[this.getX()+i][this.getY()+i];
-                System.out.println(p);
                 if(p != null)
                 {
                     return false;

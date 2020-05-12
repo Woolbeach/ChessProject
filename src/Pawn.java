@@ -7,9 +7,6 @@ public class Pawn extends GamePiece {
     @Override
     public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
         GamePiece possiblePiece = board[destination_x][destination_y];
-        //System.out.println("x: "+destination_x);
-        //System.out.println("y: "+destination_y);
-
         //Rule #1
         //Cannot attack own pieces
         if(possiblePiece !=null)

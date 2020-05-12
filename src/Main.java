@@ -57,8 +57,8 @@ public class Main {
                 int xpos = e.getX() - 5;
                 int ypos = e.getY() - 31;
 
-                System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
-                System.out.println("piece id:" + boardLogic.boardTracking[ypos / square][xpos / square]);
+                //System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
+                //System.out.println("piece id:" + boardLogic.boardTracking[ypos / square][xpos / square]);
                 if (clicks[0] > 1) {
 
                     boardLogic.movepiece(boardLogic.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, boardLogic.boardTracking, boardLogic.pieceLogic);
@@ -89,8 +89,8 @@ public class Main {
                     g.setColor(movesColor);
                     // Filip: made all possible moves green
                     GamePiece possiblePiece = boardLogic.pieceLogic[oldypos[0]][oldxpos[0]];
-                    System.out.println(oldxpos[0]);
-                    System.out.println(oldypos[0]);
+                    //System.out.println(oldxpos[0]);
+                    //System.out.println(oldypos[0]);
                     if(possiblePiece!=null){
                         for(int i=0;i<8;i++){
                             for(int j=0;j<8;j++){
