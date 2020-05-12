@@ -222,12 +222,21 @@ public class BoardLogic {
         for (int i = 0; i < tempNumberOfTurns - 1; i++) {
             int temp1 = boardArray[undoFromY[i]][undoFromX[i]];
             GamePiece currentPiece = pieceArray[undoFromY[i]][undoFromX[i]];
+            GamePiece currentPieceTo = pieceArray[undoToY[i]][undoToX[i]];
             pieceArray[undoFromY[i]][undoFromX[i]] = null;
             boardArray[undoFromY[i]][undoFromX[i]] = 0;
             boardArray[undoToY[i]][undoToX[i]] = temp1;
             pieceArray[undoToY[i]][undoToX[i]] = currentPiece;
             currentPiece.update(undoToY[i], undoToX[i]);
             whitesTurn = !whitesTurn;
+            if(currentPieceTo!=null) {
+                if (currentPiece.isWhite()) {
+                    BlackPieces.remove(currentPieceTo);
+                }
+                if (currentPiece.isBlack()) {
+                    WhitePieces.remove(currentPieceTo);
+                }
+            }
         }
         numberOfTurns = tempNumberOfTurns - 1;
     }
