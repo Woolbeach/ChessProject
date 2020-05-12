@@ -52,17 +52,22 @@ public class FileHandler {
         }
 
         int tempNumberOfTurns = i-1;
+
         logicClass.newGame();
+
         for (int j = 0; j <= tempNumberOfTurns; j++) {
             int temp1 = logicClass.boardTracking[logicClass.undoFromY[j]][logicClass.undoFromX[j]];
             GamePiece currentPiece = logicClass.pieceLogic[logicClass.undoFromY[j]][logicClass.undoFromX[j]];
+
             logicClass.pieceLogic[logicClass.undoFromY[j]][logicClass.undoFromX[j]] = null;
             logicClass.boardTracking[logicClass.undoFromY[j]][logicClass.undoFromX[j]] = 0;
             logicClass.boardTracking[logicClass.undoToY[j]][logicClass.undoToX[j]] = temp1;
             logicClass.pieceLogic[logicClass.undoToY[j]][logicClass.undoToX[j]] = currentPiece;
+
             currentPiece.update(logicClass.undoToY[j], logicClass.undoToX[j]);
             logicClass.whitesTurn = !logicClass.whitesTurn;
         }
+
         logicClass.numberOfTurns = tempNumberOfTurns+1;
 
     }
