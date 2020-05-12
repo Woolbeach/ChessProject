@@ -162,9 +162,4 @@ public class BoardLogic {
         }
         numberOfTurns = tempNumberOfTurns - 1;
     }
-
-    public GamePiece getPieceLogic(int x, int y) {
-        return pieceLogic[x][y];
-    }
-
 }
