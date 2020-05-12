@@ -25,6 +25,7 @@ public class Main {
         Dimension mySize = new Dimension();
         mySize.setSize(square * 8, square * 8);
         panel.setPreferredSize(mySize);
+        //commit
 
         LayoutManager mitLay = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
@@ -61,14 +62,16 @@ public class Main {
                 System.out.println("piece id:" + boardLogic.boardTracking[ypos / square][xpos / square]);
                 if (clicks[0] > 1) {
 
-                    int temp1 = boardLogic.movepiece(boardLogic.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, boardLogic.boardTracking, boardLogic.pieceLogic);
+                    boardLogic.movepiece(boardLogic.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, boardLogic.boardTracking, boardLogic.pieceLogic);
 
                     clicks[0] = 0;
+
                     mitUI.upDate();
-                    if(temp1 == 1){
+                    vindue.repaint();
+                    if(boardLogic.gameOver){
                         mitUI.whoWon(boardLogic.whitesTurn);
                     }
-                    vindue.repaint();
+
                 } else {
                     oldxpos[0] = xpos / square;
                     oldypos[0] = ypos / square;

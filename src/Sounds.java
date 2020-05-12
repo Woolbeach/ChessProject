@@ -75,8 +75,6 @@ public class Sounds {
         } catch (Exception e) {
             System.err.println("Error loading sound!");
         }
-
-
     }
 
     public void playBackGround() {
@@ -90,15 +88,18 @@ public class Sounds {
     }
 
     public void setSfxvolume(int value) {
-        sfx_controller1.setValue(sliderToFloat(value));
-        sfx_controller2.setValue(sliderToFloat(value));
+        float temp1 = sliderToFloat(value);
+        sfx_controller1.setValue(temp1);
+        sfx_controller2.setValue(temp1);
+        sfx_controller3.setValue(temp1);
     }
 
     public float sliderToFloat(int slider_value) {
         //en slider giver værdier 0-100 det skal laves om til en float
 
         //finder først det totalle område der kan sættes lyd i, det går fra -80 til 6,xxx
-        float onestep = (-1 * sfx_controller1.getMinimum() + sfx_controller1.getMaximum()) / 100;
+        //float onestep = (-1 * sfx_controller1.getMinimum() + sfx_controller1.getMaximum()) / 100;
+        float onestep = (-1 * -60.0f + sfx_controller1.getMaximum()) / 100;
 
         float volume = sfx_controller1.getMaximum() - ((100 - slider_value) * onestep);
 
