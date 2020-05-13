@@ -7,8 +7,11 @@ public class FileHandler {
         logicClass = input;
     }
 
+    //denne metode opretter en fil og gemmer 4 koordinater fra 4 undo-arrays, som reflekterer start koordinatsæt og slut koordinatsæt for hver tur
     public void saveGame(int x, int numberOfTurns) {
         try {
+
+            //gemmer under navnet save + den valgte save slot
             FileWriter file = new FileWriter("save" + x);
             PrintWriter out = new PrintWriter(file);
 
@@ -19,10 +22,9 @@ public class FileHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
+    //denne metode rydder de 4 undo-arrays og indlæser derefter filen save + den valgte save slot
     public void loadGame(int x) {
         int i = 0;
         for (int j = 0; j < logicClass.numberOfTurns; j++) {
@@ -35,6 +37,8 @@ public class FileHandler {
             FileReader file = new FileReader("save" + x);
             BufferedReader in = new BufferedReader(file);
             String currentLine = in.readLine();
+
+            //læser filen så længe den ikke er nået bunden, splitter koordinaterne ved komma, og indsætter disse data i de 4 respektive undo arrays
             while (currentLine != null) {
                 String[] data = currentLine.split(",");
                 logicClass.undoFromX[i] = Integer.valueOf(data[0]);
@@ -44,6 +48,8 @@ public class FileHandler {
                 i++;
                 currentLine = in.readLine();
             }
+
+            //lukker filen efter brug
             in.close();
             file.close();
 
@@ -51,10 +57,13 @@ public class FileHandler {
             e.printStackTrace();
         }
 
-        int tempNumberOfTurns = i-1;
+        //antallet af ture afgøres ud fra mængden af linjeskift i filen
+        int tempNumberOfTurns = i - 1;
 
+        //opretter et nyt spil
         logicClass.newGame();
 
+        //for hver tur i det indlæste gemte spil, udføres handlingen, indtil den sidste tur er udført. Spillet er nu indlæst.
         for (int j = 0; j <= tempNumberOfTurns; j++) {
             int temp1 = logicClass.boardTracking[logicClass.undoFromY[j]][logicClass.undoFromX[j]];
             GamePiece currentPiece = logicClass.pieceLogic[logicClass.undoFromY[j]][logicClass.undoFromX[j]];
@@ -68,7 +77,8 @@ public class FileHandler {
             logicClass.whitesTurn = !logicClass.whitesTurn;
         }
 
-        logicClass.numberOfTurns = tempNumberOfTurns+1;
+        //spillets tur-tæller opdateres til at være én højere end de gemte data
+        logicClass.numberOfTurns = tempNumberOfTurns + 1;
 
     }
 

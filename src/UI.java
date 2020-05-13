@@ -101,7 +101,7 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.saveGame(1, boardLogic.numberOfTurns);
-                System.out.println("save1");
+                System.out.println("Save in slot 1");
             }
         });
 
@@ -110,7 +110,7 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(1);
-                System.out.println("load save 1");
+                System.out.println("Load save 1");
                 update();
             }
         });
@@ -120,7 +120,7 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.saveGame(2, boardLogic.numberOfTurns);
-                System.out.println("save2");
+                System.out.println("Save in slot 2");
             }
         });
 
@@ -129,7 +129,7 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(2);
-                System.out.println("load save 2");
+                System.out.println("Load save 2");
                 update();
             }
         });
@@ -139,7 +139,7 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.saveGame(3, boardLogic.numberOfTurns);
-                System.out.println("save3");
+                System.out.println("Save in slot 3");
             }
         });
 
@@ -148,7 +148,7 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boardLogic.filehandler.loadGame(3);
-                System.out.println("load save 3");
+                System.out.println("Load save 3");
                 update();
             }
         });

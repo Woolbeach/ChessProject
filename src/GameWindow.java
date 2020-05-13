@@ -27,8 +27,6 @@ public class GameWindow extends JPanel {
         board = braet;
         squareSize = input;
         try {
-            System.out.println("Billedlæses forfra");
-
             //indlæs sorte brikker som buffered images
             blkpawn = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_pawn.png"));
             blkrook = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_rook.png"));
