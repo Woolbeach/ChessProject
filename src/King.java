@@ -4,9 +4,13 @@ public class King extends GamePiece {
         super(x, y, is_white);
     }
 
+    //arver fra gamePiece
     @Override
     public boolean canMove(int destination_x, int destination_y, GamePiece[][] board) {
         GamePiece possiblePiece = board[destination_x][destination_y];
+
+        //regel #1
+        //må ikke angribe sin egen farve
         if (possiblePiece != null) {
             if (possiblePiece.isWhite() && this.isWhite()) {
                 return false;
@@ -15,7 +19,8 @@ public class King extends GamePiece {
                 return false;
             }
         }
-        // kongen må kun rykke i en cirkel så har sagt at ændringen på begge variabler må højst være 1
+        //regel #2
+        //kongen må kun bevæge sig én i enhver retning
         if (Math.abs(this.getX() - destination_x) > 1 || Math.abs(this.getY() - destination_y) > 1) {
             return false;
         }

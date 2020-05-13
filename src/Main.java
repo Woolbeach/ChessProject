@@ -8,15 +8,18 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        //opretter et boardlogic objekt
         BoardLogic boardLogic = new BoardLogic();
 
+        //opretter integers til navigation af mus og position samt størrelse af brættet
         final int[] clicks = {0};
         final int[] oldxpos = new int[1];
         final int[] oldypos = new int[1];
         int square = 80;
 
-        GameWindow panel = new GameWindow(square, boardLogic.boardTracking);                          // opret panelet
-        JFrame vindue = new JFrame("Skak");                                    // opret et vindue på skærmen
+        // opretter panelet og et vindue på skærmen
+        GameWindow panel = new GameWindow(square, boardLogic.boardTracking);
+        JFrame vindue = new JFrame("Skak");
 
         boardLogic.fromMain = vindue;
 
@@ -25,7 +28,6 @@ public class Main {
         Dimension mySize = new Dimension();
         mySize.setSize(square * 8, square * 8);
         panel.setPreferredSize(mySize);
-        //commit
 
         LayoutManager mitLay = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
@@ -41,14 +43,19 @@ public class Main {
         gbc.gridx = 0;
         mainPanel.add(panel, gbc);
 
-        vindue.add(mainPanel);                                                      // vis panelet i vinduet
+        //vis panelet i vinduet
+        vindue.add(mainPanel);
 
-        vindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);                   // reagér på luk
-        vindue.setSize(square * 8 + 200, square * 9);                       // sæt vinduets størrelse
+        //reagerer på luk af vindue og sætter vinduets størrelse
+        vindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        vindue.setSize(square * 8 + 200, square * 9);
         vindue.setResizable(false);
         vindue.pack();
-        vindue.setVisible(true);                                                    // åbn vinduet
 
+        //åbn vinduet
+        vindue.setVisible(true);
+
+        //spillets mouselistener som reagerer på klik
         vindue.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -57,8 +64,6 @@ public class Main {
                 int xpos = e.getX() - 5;
                 int ypos = e.getY() - 31;
 
-                //System.out.println("clicked at square " + xpos / square + " , " + ypos / square);
-                //System.out.println("piece id:" + boardLogic.boardTracking[ypos / square][xpos / square]);
                 if (clicks[0] > 1) {
 
                     boardLogic.movepiece(boardLogic.whitesTurn, oldxpos[0], oldypos[0], xpos / square, ypos / square, boardLogic.boardTracking, boardLogic.pieceLogic);
@@ -67,7 +72,7 @@ public class Main {
 
                     mitUI.update();
                     vindue.repaint();
-                    if(boardLogic.gameOver){
+                    if (boardLogic.gameOver) {
                         mitUI.whoWon(boardLogic.whitesTurn);
                     }
 
@@ -78,24 +83,26 @@ public class Main {
                     int squarey = ypos / square;
                     Color selectedColor = new Color(18, 50, 150, 127);
                     Color movesColor = new Color(188, 10, 40, 100);
-                    Color possibleMoves = new Color(0,150,0,100);
-                    //draw selected square
+                    Color possibleMoves = new Color(0, 150, 0, 100);
+
+                    //tegn den valgte firkant
                     Graphics g = mainPanel.getGraphics();
                     g.setColor(Color.blue);
                     g.drawRect(squarex * square, squarey * square, square, square);
                     g.setColor(selectedColor);
                     g.fillRect(squarex * square, squarey * square, square, square);
-                    //moves
+
+                    //bevægelse af brik
                     g.setColor(movesColor);
-                    // Filip: made all possible moves green
+
                     GamePiece possiblePiece = boardLogic.pieceLogic[oldypos[0]][oldxpos[0]];
-                    //System.out.println(oldxpos[0]);
-                    //System.out.println(oldypos[0]);
-                    if(possiblePiece!=null){
-                        for(int i=0;i<8;i++){
-                            for(int j=0;j<8;j++){
+
+                    if (possiblePiece != null) {
+                        for (int i = 0; i < 8; i++) {
+                            for (int j = 0; j < 8; j++) {
                                 {
-                                    if(possiblePiece.canMove(j,i,boardLogic.pieceLogic)) {
+                                    //farver de mulige felter
+                                    if (possiblePiece.canMove(j, i, boardLogic.pieceLogic)) {
                                         g.setColor(possibleMoves);
                                         g.drawRect(i * square, j * square, square, square);
                                         g.fillRect(i * square, j * square, square, square);

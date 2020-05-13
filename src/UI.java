@@ -7,12 +7,14 @@ import java.awt.event.ActionListener;
 
 public class UI {
 
-
+    //opretter variabler samt et BoardLogic objekt
     public boolean muteon = true;
     public int temp1, temp2;
     public BoardLogic boardLogic;
 
     public UI() {
+
+        //opretter en musik slider listener og sætter inputtet til setMusicVolume metoden i Sounds
         musicSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -20,6 +22,8 @@ public class UI {
                 boardLogic.sounds.setMusicVolume(musicSlider.getValue());
             }
         });
+
+        //opretter en mute knap listener som sætter samtlige værdier til 0 hvis trykket, og tilbage til oprindelige hvis trykket igen
         muteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,6 +49,8 @@ public class UI {
                 }
             }
         });
+
+        //opretter en dialogboks for new game
         newGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,6 +68,7 @@ public class UI {
 
                 System.out.println("New game! " + n);
 
+                //hvis ja vælges, oprettes et nyt spil med counter sat til 0
                 if (n == 0) {
                     boardLogic.newGame();
                     roundsLabel.setText("Total moves: 0");
@@ -70,6 +77,8 @@ public class UI {
 
             }
         });
+
+        //opretter en SFX slider listener og sætter inputtet til setSFXVolume metoden i Sounds
         sfxSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -77,15 +86,17 @@ public class UI {
                 boardLogic.sounds.setSFXVolume(sfxSlider.getValue());
             }
         });
+
+        //opretter en undo knap listener der kalder undo funktionen fra BoardLogic
         undo1MoveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Undo was pressed");
                 boardLogic.undo(boardLogic.boardTracking, boardLogic.pieceLogic);
                 update();
             }
         });
 
+        //opretter en save knap listener der kalder saveGame metoden fra BoardLogic med parameteren 1
         save1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,6 +104,8 @@ public class UI {
                 System.out.println("save1");
             }
         });
+
+        //opretter en load knap listener der kalder loadGame metoden fra BoardLogic med parameteren 1
         loadSave1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,6 +114,8 @@ public class UI {
                 update();
             }
         });
+
+        //opretter en save knap listener der kalder saveGame metoden fra BoardLogic med parameteren 2
         save2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,6 +123,8 @@ public class UI {
                 System.out.println("save2");
             }
         });
+
+        //opretter en load knap listener der kalder loadGame metoden fra BoardLogic med parameteren 2
         loadSave2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -116,6 +133,8 @@ public class UI {
                 update();
             }
         });
+
+        //opretter en save knap listener der kalder saveGame metoden fra BoardLogic med parameteren 3
         save3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -123,6 +142,8 @@ public class UI {
                 System.out.println("save3");
             }
         });
+
+        //opretter en load knap listener der kalder loadGame metoden fra BoardLogic med parameteren 3
         loadSave3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,6 +154,7 @@ public class UI {
         });
     }
 
+    //lille metode til at opdatere teksten på displayet
     public void update() {
         roundsLabel.setText("Total moves: " + boardLogic.numberOfTurns);
         if (boardLogic.whitesTurn) {
@@ -143,6 +165,7 @@ public class UI {
         isChecked();
     }
 
+    //skriver hvem vandt, når en konge dør
     public void whoWon(boolean WhiteOrBlack) {
         if (WhiteOrBlack) {
             turnLabel.setText("Black won!");
@@ -151,6 +174,7 @@ public class UI {
         }
     }
 
+    //tjekker for om kongen er i skak
     public void isChecked() {
         switch (boardLogic.isChecked) {
             case 1: {
@@ -174,7 +198,6 @@ public class UI {
         }
     }
 
-    //tada
     public static void main(String[] args) {
         JFrame frame = new JFrame("UI");
         frame.setContentPane(new UI().UI_Panel);
@@ -183,8 +206,6 @@ public class UI {
         frame.setVisible(true);
     }
 
-    private JButton playButton;
-    private JButton stopButton;
     private JSlider musicSlider;
     private JButton muteButton;
     private JPanel UI_Panel;

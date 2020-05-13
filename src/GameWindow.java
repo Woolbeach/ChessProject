@@ -8,7 +8,7 @@ public class GameWindow extends JPanel {
     public int squareSize = 10;
     public int[][] board;
     public boolean selected;
-    public int selx,sely;
+    public int selx, sely;
     BufferedImage blkpawn = null;
     BufferedImage blkrook = null;
     BufferedImage blkknight = null;
@@ -28,7 +28,8 @@ public class GameWindow extends JPanel {
         squareSize = input;
         try {
             System.out.println("Billedlæses forfra");
-            //load black pieces into buffered images
+
+            //indlæs sorte brikker som buffered images
             blkpawn = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_pawn.png"));
             blkrook = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_rook.png"));
             blkknight = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_knight.png"));
@@ -36,7 +37,7 @@ public class GameWindow extends JPanel {
             blkqueen = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_queen.png"));
             blkking = ImageIO.read(new File("ressources/chessIcons/DarkSide/black_king.png"));
 
-            //load white pieces into buffered images
+            //indlæs hvide brikker som buffered images
             whtpawn = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_pawn.png"));
             whtrook = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_rook.png"));
             whtknight = ImageIO.read(new File("ressources/chessIcons/WhiteSide/white_knight.png"));
@@ -51,8 +52,9 @@ public class GameWindow extends JPanel {
 
     public void paintComponent(java.awt.Graphics g) {
 
-        // Herunder referer g til et Graphics-objekt man kan tegne med
-        super.paintComponent(g);                // tegn først baggrunden på panelet
+        //herunder referer g til et Graphics-objekt man kan tegne med
+        //tegn først baggrunden på panelet
+        super.paintComponent(g);
 
         boolean farve = true;
         for (int j = 0; j < 8; j++) {
@@ -70,64 +72,62 @@ public class GameWindow extends JPanel {
             farve = !farve;
         }
 
-        if(selected){
-            g.drawRect(selx,sely,squareSize,squareSize);
+        if (selected) {
+            g.drawRect(selx, sely, squareSize, squareSize);
 
         }
 
-//testdada
+        //tegner brikkerne på brættet
         for (int xaxis = 0; xaxis < 8; xaxis++) {
             for (int yaxis = 0; yaxis < 8; yaxis++) {
                 switch (board[xaxis][yaxis]) {
-                    //filip: har lavet flere cases da der er flere brikker
-                    case 1:
-                        {
-                        g.drawImage(blkpawn, squareSize*yaxis, squareSize*xaxis, null);
+
+                    case 1: {
+                        g.drawImage(blkpawn, squareSize * yaxis, squareSize * xaxis, null);
                         break;
                     }
-                    case 3:{
-                        g.drawImage(blkknight, squareSize*yaxis, squareSize*xaxis, null);
+                    case 3: {
+                        g.drawImage(blkknight, squareSize * yaxis, squareSize * xaxis, null);
                         break;
                     }
-                    case 4:{
-                        g.drawImage(blkbishop, squareSize*yaxis, squareSize*xaxis, null);
+                    case 4: {
+                        g.drawImage(blkbishop, squareSize * yaxis, squareSize * xaxis, null);
                         break;
                     }
                     case 2: {
-                        g.drawImage(blkrook, yaxis*squareSize, xaxis*squareSize, null);
+                        g.drawImage(blkrook, yaxis * squareSize, xaxis * squareSize, null);
                         break;
                     }
-                    case 5:{
-                        g.drawImage(blkqueen, squareSize*yaxis, squareSize*xaxis, null);
+                    case 5: {
+                        g.drawImage(blkqueen, squareSize * yaxis, squareSize * xaxis, null);
                         break;
                     }
-                    case 6:{
-                        g.drawImage(blkking, squareSize*yaxis, squareSize*xaxis, null);
+                    case 6: {
+                        g.drawImage(blkking, squareSize * yaxis, squareSize * xaxis, null);
                         break;
                     }
-                    case 7:
-                            {
-                        g.drawImage(whtpawn, squareSize*yaxis, squareSize*xaxis, null);
+                    case 7: {
+                        g.drawImage(whtpawn, squareSize * yaxis, squareSize * xaxis, null);
                         break;
                     }
-                    case 9:{
-                        g.drawImage(whtknight, squareSize*yaxis, squareSize*xaxis, null);
+                    case 9: {
+                        g.drawImage(whtknight, squareSize * yaxis, squareSize * xaxis, null);
                         break;
                     }
-                    case 10:{
-                        g.drawImage(whtbishop, squareSize*yaxis, squareSize*xaxis, null);
+                    case 10: {
+                        g.drawImage(whtbishop, squareSize * yaxis, squareSize * xaxis, null);
                         break;
                     }
-                    case 8:{
-                        g.drawImage(whtrook, yaxis*squareSize, xaxis*squareSize, null);
+                    case 8: {
+                        g.drawImage(whtrook, yaxis * squareSize, xaxis * squareSize, null);
                         break;
                     }
                     case 11: {
-                        g.drawImage(whtqueen, yaxis*squareSize, xaxis*squareSize, null);
+                        g.drawImage(whtqueen, yaxis * squareSize, xaxis * squareSize, null);
                         break;
                     }
                     case 12: {
-                        g.drawImage(whtking, yaxis*squareSize, xaxis*squareSize, null);
+                        g.drawImage(whtking, yaxis * squareSize, xaxis * squareSize, null);
                         break;
                     }
                     default: {
@@ -137,9 +137,5 @@ public class GameWindow extends JPanel {
                 }
             }
         }
-    }
-
-    public static void selector(int xpos, int ypos){
-
     }
 }
