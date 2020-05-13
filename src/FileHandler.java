@@ -1,10 +1,10 @@
 import java.io.*;
 
 public class FileHandler {
-    BoardLogic logicClass;
+    BoardLogic boardLogic;
 
     FileHandler(BoardLogic input) {
-        logicClass = input;
+        boardLogic = input;
     }
 
     //denne metode opretter en fil og gemmer 4 koordinater fra 4 undo-arrays, som reflekterer start koordinatsæt og slut koordinatsæt for hver tur
@@ -16,7 +16,7 @@ public class FileHandler {
             PrintWriter out = new PrintWriter(file);
 
             for (int i = 0; i < numberOfTurns; i++) {
-                out.println(logicClass.undoFromX[i] + "," + logicClass.undoFromY[i] + "," + logicClass.undoToX[i] + "," + logicClass.undoToY[i] + ",");
+                out.println(boardLogic.undoFromX[i] + "," + boardLogic.undoFromY[i] + "," + boardLogic.undoToX[i] + "," + boardLogic.undoToY[i] + ",");
             }
             out.close();
         } catch (Exception e) {
@@ -27,11 +27,11 @@ public class FileHandler {
     //denne metode rydder de 4 undo-arrays og indlæser derefter filen save + den valgte save slot
     public void loadGame(int x) {
         int i = 0;
-        for (int j = 0; j < logicClass.numberOfTurns; j++) {
-            logicClass.undoFromX[i] = 0;
-            logicClass.undoFromY[i] = 0;
-            logicClass.undoToX[i] = 0;
-            logicClass.undoToY[i] = 0;
+        for (int j = 0; j < boardLogic.numberOfTurns; j++) {
+            boardLogic.undoFromX[i] = 0;
+            boardLogic.undoFromY[i] = 0;
+            boardLogic.undoToX[i] = 0;
+            boardLogic.undoToY[i] = 0;
         }
         try {
             FileReader file = new FileReader("save" + x);
@@ -41,10 +41,10 @@ public class FileHandler {
             //læser filen så længe den ikke er nået bunden, splitter koordinaterne ved komma, og indsætter disse data i de 4 respektive undo arrays
             while (currentLine != null) {
                 String[] data = currentLine.split(",");
-                logicClass.undoFromX[i] = Integer.valueOf(data[0]);
-                logicClass.undoFromY[i] = Integer.valueOf(data[1]);
-                logicClass.undoToX[i] = Integer.valueOf(data[2]);
-                logicClass.undoToY[i] = Integer.valueOf(data[3]);
+                boardLogic.undoFromX[i] = Integer.valueOf(data[0]);
+                boardLogic.undoFromY[i] = Integer.valueOf(data[1]);
+                boardLogic.undoToX[i] = Integer.valueOf(data[2]);
+                boardLogic.undoToY[i] = Integer.valueOf(data[3]);
                 i++;
                 currentLine = in.readLine();
             }
@@ -61,24 +61,24 @@ public class FileHandler {
         int tempNumberOfTurns = i - 1;
 
         //opretter et nyt spil
-        logicClass.newGame();
+        boardLogic.newGame();
 
         //for hver tur i det indlæste gemte spil, udføres handlingen, indtil den sidste tur er udført. Spillet er nu indlæst.
         for (int j = 0; j <= tempNumberOfTurns; j++) {
-            int temp1 = logicClass.boardTracking[logicClass.undoFromY[j]][logicClass.undoFromX[j]];
-            GamePiece currentPiece = logicClass.pieceLogic[logicClass.undoFromY[j]][logicClass.undoFromX[j]];
+            int temp1 = boardLogic.boardTracking[boardLogic.undoFromY[j]][boardLogic.undoFromX[j]];
+            GamePiece currentPiece = boardLogic.pieceLogic[boardLogic.undoFromY[j]][boardLogic.undoFromX[j]];
 
-            logicClass.pieceLogic[logicClass.undoFromY[j]][logicClass.undoFromX[j]] = null;
-            logicClass.boardTracking[logicClass.undoFromY[j]][logicClass.undoFromX[j]] = 0;
-            logicClass.boardTracking[logicClass.undoToY[j]][logicClass.undoToX[j]] = temp1;
-            logicClass.pieceLogic[logicClass.undoToY[j]][logicClass.undoToX[j]] = currentPiece;
+            boardLogic.pieceLogic[boardLogic.undoFromY[j]][boardLogic.undoFromX[j]] = null;
+            boardLogic.boardTracking[boardLogic.undoFromY[j]][boardLogic.undoFromX[j]] = 0;
+            boardLogic.boardTracking[boardLogic.undoToY[j]][boardLogic.undoToX[j]] = temp1;
+            boardLogic.pieceLogic[boardLogic.undoToY[j]][boardLogic.undoToX[j]] = currentPiece;
 
-            currentPiece.update(logicClass.undoToY[j], logicClass.undoToX[j]);
-            logicClass.whitesTurn = !logicClass.whitesTurn;
+            currentPiece.update(boardLogic.undoToY[j], boardLogic.undoToX[j]);
+            boardLogic.whitesTurn = !boardLogic.whitesTurn;
         }
 
         //spillets tur-tæller opdateres til at være én højere end de gemte data
-        logicClass.numberOfTurns = tempNumberOfTurns + 1;
+        boardLogic.numberOfTurns = tempNumberOfTurns + 1;
 
     }
 
