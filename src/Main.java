@@ -72,7 +72,7 @@ public class Main {
 
                     mitUI.update();
                     vindue.repaint();
-                    if (boardLogic.gameOver) {
+                    if(boardLogic.gameOver){
                         mitUI.whoWon(boardLogic.whitesTurn);
                     }
 

@@ -138,7 +138,9 @@ public class BoardLogic {
 
         isChecked = 0;
         int lengthWhite= (WhitePieces.size())-1;
+        System.out.println(lengthWhite);
         int lengthBlack= (BlackPieces.size())-1;
+        System.out.println(lengthBlack);
         if (whosturn == true && checkWhiteKing(tox, toy) == true) {
             System.out.println("Skak");
             isChecked = 3;
