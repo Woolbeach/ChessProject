@@ -198,6 +198,7 @@ public class UI {
         }
     }
 
+    //bruges ikke
     public static void main(String[] args) {
         JFrame frame = new JFrame("UI");
         frame.setContentPane(new UI().UI_Panel);
@@ -214,7 +215,6 @@ public class UI {
     private JLabel turnLabel;
     private JLabel roundsLabel;
     private JButton undo1MoveButton;
-    private JButton saveGameToLogfileButton;
     private JButton save1Button;
     private JButton loadSave1Button;
     private JButton save2Button;
