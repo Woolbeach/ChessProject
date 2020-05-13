@@ -188,7 +188,7 @@ public class UI {
             case 3: {
             }
             case 4: {
-                isChecked.setText("Game is over!");
+                isChecked.setText("Game can be over!");
                 break;
             }
             default: {
