@@ -1,6 +1,7 @@
 import java.io.*;
 
 public class FileHandler {
+    //den "linkes" til boardlogic klassen så man kan kalde forskellige funktioner på tværs
     BoardLogic boardLogic;
 
     FileHandler(BoardLogic input) {
@@ -68,12 +69,16 @@ public class FileHandler {
             int temp1 = boardLogic.boardTracking[boardLogic.undoFromY[j]][boardLogic.undoFromX[j]];
             GamePiece currentPiece = boardLogic.pieceLogic[boardLogic.undoFromY[j]][boardLogic.undoFromX[j]];
 
+            //en brik "rykkes" ved at sætte den gamle position til null eller 0 og den nye position til brikken.
             boardLogic.pieceLogic[boardLogic.undoFromY[j]][boardLogic.undoFromX[j]] = null;
             boardLogic.boardTracking[boardLogic.undoFromY[j]][boardLogic.undoFromX[j]] = 0;
             boardLogic.boardTracking[boardLogic.undoToY[j]][boardLogic.undoToX[j]] = temp1;
             boardLogic.pieceLogic[boardLogic.undoToY[j]][boardLogic.undoToX[j]] = currentPiece;
 
+            //opdaterer brikkens position
             currentPiece.update(boardLogic.undoToY[j], boardLogic.undoToX[j]);
+
+            //man skiftes til at rykke
             boardLogic.whitesTurn = !boardLogic.whitesTurn;
         }
 

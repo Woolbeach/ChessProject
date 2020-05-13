@@ -141,7 +141,7 @@ public class BoardLogic {
             return;
         }
 
-
+        //der laves en midlertidlig brik som bruges til at tjekke forskellige ting
         GamePiece currentPiece = pieceArray[fromy][fromx];
 
         //hvis der ikke er valgt en mulig brik, sker der intet

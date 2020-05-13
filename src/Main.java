@@ -25,21 +25,26 @@ public class Main {
 
         JPanel mainPanel = new JPanel();
 
+        //her oprettes en ny dimension som bruges til at bestemme en størrelse når man kalder vindue.pack() senere
         Dimension mySize = new Dimension();
         mySize.setSize(square * 8, square * 8);
+        //panelet med skakbrættet i sættes så til den rigtige størrelse
         panel.setPreferredSize(mySize);
 
+        //for at kunne have UI og skakbræt bruges der en layoutmanager så man kan tilføje flere elementer på skærmen på de rigtige steder
         LayoutManager mitLay = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = mainPanel.getComponentCount() + 2;
         gbc.gridy = 0;
 
+        //her bruges layouttet
         mainPanel.setLayout(mitLay);
+
+        //UI og gameWindow tilføjes til et JPanel
         UI mitUI = new UI();
         boardLogic.ourUI = mitUI;
         mitUI.boardLogic = boardLogic;
         mainPanel.add(mitUI.$$$getRootComponent$$$(), gbc);
-
         gbc.gridx = 0;
         mainPanel.add(panel, gbc);
 
