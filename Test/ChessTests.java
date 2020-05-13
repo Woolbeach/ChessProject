@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 public class ChessTests
 {
-    // Test for changing price on ticket
     BoardLogic boardLogic = new BoardLogic();
 
     @Test

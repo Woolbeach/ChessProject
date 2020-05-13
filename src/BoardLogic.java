@@ -285,7 +285,7 @@ public class BoardLogic {
 
     //denne boolean metode tjekker for om den sorte konge er i "skak"
     public boolean checkBlackKing(int tox, int toy) {
-        int length = (WhitePieces.size()) - 1;
+        int length = (BlackPieces.size() - 1);
         for (GamePiece GamePiece : WhitePieces) {
             if (GamePiece.canMove(BlackPieces.get(length).getX(), BlackPieces.get(length).getY(), pieceLogic)) {
                 if (GamePiece.getX() == toy && GamePiece.getY() == tox) {

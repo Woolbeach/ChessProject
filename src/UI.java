@@ -404,7 +404,7 @@ public class UI {
         loadSave3Button.setText("Load Save 3");
         panel3.add(loadSave3Button);
         isChecked = new JLabel();
-        isChecked.setText(".");
+        isChecked.setText("");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
