@@ -26,7 +26,7 @@ public class Pawn extends GamePiece {
         //hvid
         if (this.isWhite() && this.getX() == 6 && (Math.abs(destination_x - this.getX()) == initialMove && destination_y == this.getY())) {
             for (int i = 1; i < initialMove; i++) {
-                GamePiece p = board[destination_x][destination_y];
+                GamePiece p=board[this.getX()-i][this.getY()];
                 if (p != null) {
                     return false;
                 }
@@ -37,7 +37,7 @@ public class Pawn extends GamePiece {
         //sort
         if (this.isBlack() && this.getX() == 1 && (Math.abs(destination_x - this.getX()) == initialMove && destination_y == this.getY())) {
             for (int i = 1; i < initialMove; i++) {
-                GamePiece p = board[destination_x][destination_y];
+                GamePiece p=board[this.getX()+i][this.getY()];
                 if (p != null) {
                     return false;
                 }
